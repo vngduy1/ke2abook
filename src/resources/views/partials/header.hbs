@@ -1,0 +1,42 @@
+<header class="bookstore-header">
+  <div class="header-container">
+    <!-- ロゴ -->
+    <div class="logo">
+      <a href="/">
+        <img src="/images//KE2abook.png" alt="ke2aBook" class="logo-img" />
+      </a>
+    </div>
+
+    <div class="header-icon">
+      <!-- アイコンで検索バーを表示 -->
+      <div class="search-toggle">
+        <img
+          src="/images/icon/search.svg"
+          alt="Search Icon"
+          class="search-icon"
+        />
+      </div>
+      <!-- アイコンでナビゲーションメニューを表示 -->
+      <div class="nav-toggle">
+        <img src="/images/icon/nav.svg" alt="Nav Icon" class="nav-icon" />
+      </div>
+    </div>
+    <div class="search-bar">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="本、著者、ジャンルを検索する"
+      />
+      <button class="search-btn">検索</button>
+    </div>
+
+    {{!-- navメニュー --}}
+    <nav class="nav-menu">
+      <ul class="nav-list">
+        <li><a href="/about">紹介</a></li>
+        <li><a href="/contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<script src="/js/header.js"></script>

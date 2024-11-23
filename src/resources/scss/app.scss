@@ -1,0 +1,44 @@
+@import '_variables';
+@import 'components/header';
+
+/* ページ全体にデフォルトのマージンやパディングがないことを確認してください。 */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+//mobileディスプレイ
+@media (max-width: 480px) {
+  .app {
+    max-width: 100%;
+    padding: 0 5px;
+  }
+}
+
+//tableディスプレイ
+@media (max-width: 768px) and (min-width: 481px) {
+  .app {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+}
+
+//コンピューターディスプレイ
+@media (max-width: 1200px) and (min-width: 769px) {
+  .app {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+}
+
+@media (min-width: 1201px) {
+  .app {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+  }
+}

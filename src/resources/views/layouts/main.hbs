@@ -1,0 +1,23 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/app.css" />
+  </head>
+  <body>
+    <div class="app">
+      {{!-- headerインターフェースを取得する --}}
+      <div class="">{{> header}}</div>
+
+      {{!-- bodyセクションの役割: -
+      この部分にページごとのコンテンツを動的に表示します。 - `{{{body}}}`
+      はサーバー側でレンダリングされたHTMLやテキストを挿入するために使用されます。
+      - 例えば、各ページ（ホーム、詳細ページなど）の内容がここに差し込まれます。
+      --}}
+      <div class="">{{{body}}}</div>
+      {{!-- footerインターフェースを取得する --}}
+      <div class="">{{> footer}}</div>
+    </div>
+  </body>
+</html>
