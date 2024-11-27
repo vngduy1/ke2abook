@@ -1,0 +1,25 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Address</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each dataTable}}
+    <tr>
+      <td>{{email}}</td>
+      <td>{{firstName}}</td>
+      <td>{{lastName}}</td>
+      <td>{{address}}</td>
+      <td class="action-cell">
+        <a href="/edit-crud?id={{id}}" class="btn btn-primary">Edit</a>
+        <a href="/delete-crud?id={{id}}" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

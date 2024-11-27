@@ -90,7 +90,7 @@
 .header-icon {
   display: none; }
 
-/* Cấu hình cho các màn hình nhỏ */
+/* 小さな画面向けの構成 */
 @media (max-width: 768px) and (min-width: 481px) {
   .header-icon {
     display: flex;
@@ -104,19 +104,18 @@
     cursor: pointer; }
   .logo {
     flex: none; }
-  /* Tạo không gian cho các biểu tượng */
+  /* アイコン用のスペースを確保する */
   .search-bar {
     display: none;
     position: absolute;
     top: 70px;
-    left: 0;
-    width: 100%;
+    width: 90%;
     background-color: white;
     padding: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 1000; }
   .search-bar input {
-    width: 90%;
+    width: 100%;
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #ccc;
@@ -127,7 +126,7 @@
     border: none;
     color: white;
     border-radius: 4px; }
-  /* Khi nhấn vào biểu tượng search, hiện thanh tìm kiếm */
+  /* 検索アイコンをクリックすると、検索バーが表示されます */
   .search-bar.active {
     display: block; }
   .nav-menu {
@@ -140,9 +139,7 @@
     padding: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 1000; }
-  .nav-list li {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
-  /* Khi nhấn vào biểu tượng nav, hiện menu */
+  /*ナビアイコンをクリックするとメニューが表示されます*/
   .nav-menu.active {
     display: block; }
   .nav-list {
@@ -164,13 +161,447 @@
   .nav-toggle {
     display: none; } }
 
-/* Đảm bảo toàn bộ trang không có margin hoặc padding mặc định */
+/* フッター全体のスタイル */
+.footer-container {
+  background-color: #f8f9fa;
+  /* 背景色を薄いグレーに設定 */
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  /* 各セクションを均等に配置 */
+  text-align: left;
+  border-top: 1px solid #ddd; }
+
+.footer-section {
+  flex: 1;
+  margin: 0 10px; }
+
+.footer-section h4 {
+  font-size: 18px;
+  /* セクションタイトルのフォントサイズ */
+  color: #333;
+  /* タイトルの文字色 */
+  margin-bottom: 10px; }
+
+.footer-section p,
+.footer-section a {
+  font-size: 14px;
+  /* テキストのフォントサイズ */
+  color: #555;
+  /* テキストの文字色 */
+  margin: 5px 0; }
+
+.footer-section a:hover {
+  color: #007bff;
+  /* リンクにホバーしたときの色 */
+  text-decoration: underline; }
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 12px;
+  color: #aaa; }
+
+.footer-icon {
+  height: 40px;
+  width: 40px; }
+
+/* ======================== */
+/* Mobileディスプレイ */
+/* 最大幅480px以下の画面向け */
+@media (max-width: 480px) {
+  .footer-container {
+    flex-direction: column;
+    /* セクションを縦に並べる */
+    padding: 10px;
+    /* パディングを減らす */ }
+  .footer-section {
+    margin: 10px 0;
+    /* セクション間の余白を広げる */
+    text-align: center;
+    /* セクション内のテキストを中央に配置 */ }
+  .footer-section h4 {
+    font-size: 16px;
+    /* モバイル用にフォントサイズを縮小 */ }
+  .footer-section p,
+  .footer-section a {
+    font-size: 12px;
+    /* テキストのフォントサイズを縮小 */ }
+  .footer-bottom {
+    font-size: 10px;
+    /* 小さな画面用にフッターの文字サイズを縮小 */ }
+  .footer-icon {
+    height: 30px;
+    width: 30px;
+    /* アイコンのサイズを縮小 */ } }
+
+/* ======================== */
+/* Tabletディスプレイ */
+/* 幅481pxから768pxの画面向け */
+@media (max-width: 768px) and (min-width: 481px) {
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+    /* パディングを調整 */ }
+  .footer-section {
+    min-width: 300px;
+    margin: 0 10px;
+    /* セクション間の余白 */
+    text-align: left;
+    /* テキストの位置を左揃えに */ }
+  .footer-section h4 {
+    font-size: 17px;
+    /* タブレット用に少しフォントサイズを調整 */ }
+  .footer-section p,
+  .footer-section a,
+  .footer-section address {
+    font-size: 13px;
+    /* テキストのフォントサイズを少し大きく */ }
+  .footer-bottom {
+    font-size: 11px;
+    /* タブレット用のフッター文字サイズ */ }
+  .footer-icon {
+    height: 35px;
+    width: 35px;
+    /* アイコンのサイズを調整 */ } }
+
+/* ======================== */
+/* コンピューターディスプレイ */
+/* 幅769pxから1200pxの画面向け */
+@media (max-width: 1200px) and (min-width: 769px) {
+  .footer-container {
+    flex-direction: row;
+    /* セクションを横に並べる */
+    padding: 20px;
+    /* デフォルトのパディング */ }
+  .footer-section {
+    margin: 0 15px;
+    /* セクション間の余白 */
+    text-align: left;
+    /* テキストは左揃え */ }
+  .footer-section h4 {
+    font-size: 18px;
+    /* 通常のフォントサイズ */ }
+  .footer-section p,
+  .footer-section a {
+    font-size: 14px;
+    /* テキストのフォントサイズを戻す */ }
+  .footer-bottom {
+    font-size: 12px;
+    /* 通常のフッター文字サイズ */ }
+  .footer-icon {
+    height: 40px;
+    width: 40px;
+    /* アイコンのサイズを標準に戻す */ } }
+
+.book-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: left;
+  padding: 16px; }
+
+.book-item {
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease; }
+  .book-item a {
+    text-decoration: none; }
+  .book-item .book-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block; }
+  .book-item .book-info {
+    padding: 12px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    padding: 10px; }
+    .book-item .book-info .book-title {
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 1.5;
+      height: 3em;
+      margin: 8px 0;
+      color: #333;
+      text-align: center;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-align: center; }
+    .book-item .book-info .book-author {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 8px;
+      text-align: center; }
+    .book-item .book-info .book-price {
+      font-size: 14px;
+      font-weight: bold;
+      color: #d32f2f;
+      text-align: center; }
+
+.book-item:hover {
+  transform: translateY(-10px); }
+
+@media (max-width: 768px) {
+  .book-container {
+    gap: 20px; } }
+
+@media (max-width: 480px) {
+  .book-item {
+    width: 100%;
+    margin: 15px; }
+    .book-item .book-image {
+      height: 360px; } }
+
+/* Resetting some default styles */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  /* 背景色をライトグレーに設定 */
+  color: #212529;
+  /* テキスト色をダークに設定 */
+  padding: 20px; }
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  /* 背景色を白に設定 */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* 微妙な影を追加 */ }
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -5px; }
+
+.form-group {
+  margin: 10px 5px;
+  flex: 1; }
+
+.col-12 {
+  flex: 100%;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  font-weight: bold; }
+
+.col-md-6 {
+  flex: 50%;
+  padding: 0 10px; }
+
+.col-md-3 {
+  flex: 25%;
+  padding: 0 10px; }
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold; }
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box; }
+
+input:focus,
+select:focus {
+  border-color: #80bdff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.25); }
+
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  /* プライマリーブルーを使用 */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s; }
+
+button:hover {
+  background-color: #0056b3;
+  /* ブルーを少し暗く設定 */ }
+
+/* フォームグループの下部に余白を追加 */
+.form-group {
+  margin-bottom: 15px; }
+
+/* --- モバイルデザイン --- */
+@media (max-width: 576px) {
+  .container {
+    padding: 10px; }
+  .col-md-6,
+  .col-md-3 {
+    flex: 100%;
+    padding: 0; } }
+
+/* --- タブレットデザイン --- */
+@media (min-width: 577px) and (max-width: 768px) {
+  .container {
+    max-width: 700px; }
+  .col-md-6 {
+    flex: 50%; }
+  .col-md-3 {
+    flex: 33.33%; } }
+
+/* --- コンピュータデザイン --- */
+@media (min-width: 769px) {
+  .container {
+    max-width: 800px; } }
+
+.table {
+  width: 100%;
+  /* テーブルの幅 */
+  border-collapse: collapse;
+  /* テーブル枠線を重ねる */
+  margin-top: 20px;
+  /* 上の余白 */ }
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  /* 枠線の色 */
+  padding: 8px;
+  /* 内側の余白 */
+  text-align: left;
+  /* テキストを左揃え */ }
+
+.table th {
+  background-color: #f4f4f4;
+  /* ヘッダーの背景色 */
+  font-weight: bold;
+  /* 文字を太字に */ }
+
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+  /* 偶数行の背景色 */ }
+
+.table tbody tr:hover {
+  background-color: #f1f1f1;
+  /* 行をホバーした時の背景色 */ }
+
+/* フレックスボックスで2つのボタンを同じ行に配置 */
+.action-cell {
+  justify-content: space-between;
+  /* ボタンの間にスペースを挿入 */
+  gap: 10px;
+  /* ボタン間の余白 */ }
+
+/* ボタンスタイル */
+.btn {
+  text-decoration: none;
+  /* 下線を削除 */
+  min-width: 54px;
+  padding: 5px 10px;
+  /* 内側の余白 */
+  border-radius: 4px;
+  /* 角を丸める */
+  color: #fff;
+  /* テキスト色 */
+  display: inline-block;
+  /* インラインブロックに設定 */
+  text-align: center;
+  /* テキストを中央揃え */ }
+
+.btn-primary {
+  background-color: #007bff;
+  /* プライマリボタンの背景色 */
+  border: none;
+  /* 枠線を削除 */ }
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  /* ホバー時の背景色 */ }
+
+.btn-danger {
+  background-color: #dc3545;
+  /* 危険ボタンの背景色 */
+  border: none;
+  /* 枠線を削除 */ }
+
+.btn-danger:hover {
+  background-color: #a71d2a;
+  /* ホバー時の背景色 */ }
+
+/* レスポンシブ対応スタイル */
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    padding: 6px;
+    /* 内側の余白 */
+    font-size: 14px;
+    /* フォントサイズ */ }
+  .btn {
+    font-size: 16px;
+    /* ボタンのフォントサイズ */
+    padding: 4px 8px;
+    /* ボタンの内側の余白 */
+    margin: 4px; }
+  .action-cell {
+    flex-direction: column;
+    /* 小さな画面ではボタンを縦に配置 */
+    align-items: flex-start;
+    /* 左揃え */ } }
+
+@media (max-width: 480px) {
+  .table th,
+  .table td {
+    font-size: 12px;
+    /* フォントサイズ */
+    padding: 4px;
+    /* 内側の余白 */ }
+  .btn {
+    font-size: 16px;
+    /* ボタンのフォントサイズ */
+    padding: 3px 6px;
+    /* ボタンの内側の余白 */ } }
+
+/* ページ全体にデフォルトのマージンやパディングがないことを確認してください。 */
 body,
 html {
   margin: 0;
   padding: 0;
   height: 100%;
   box-sizing: border-box; }
+
+.app-body {
+  min-height: 100vh; }
 
 @media (max-width: 480px) {
   .app {
