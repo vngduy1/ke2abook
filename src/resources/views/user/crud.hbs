@@ -1,0 +1,85 @@
+<body>
+  <div class="container">
+    <div class="row">
+      <form action="/post-crud" method="POST">
+        <div class="form-row">
+          <div class="col-12 mt-3">新規登録</div>
+          <div class="form-group col-md-6">
+            <label for="email">メールアドレス</label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              placeholder="メールアドレス"
+              required
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="password">パスワード</label>
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              placeholder="パスワード"
+              required
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="firstName">名</label>
+            <input
+              type="text"
+              class="form-control"
+              name="firstName"
+              placeholder="名"
+              required
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="lastName">姓</label>
+            <input
+              type="text"
+              class="form-control"
+              name="lastName"
+              placeholder="姓"
+              required
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="address">住所</label>
+          <input
+            type="text"
+            class="form-control"
+            name="address"
+            placeholder="住所"
+            required
+          />
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="phonenumber">電話番号</label>
+            <input
+              type="text"
+              class="form-control"
+              name="phonenumber"
+              placeholder="電話番号"
+              required
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="image">プロフィール画像</label>
+            <input
+              type="file"
+              class="form-control"
+              name="image"
+              accept="image/*"
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">登録</button>
+      </form>
+    </div>
+  </div>
+</body>

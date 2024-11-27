@@ -1,6 +1,9 @@
 @import '_variables';
 @import 'components/header';
-
+@import 'components/footer';
+@import 'components/body/home';
+@import 'components/body/user/crud';
+@import 'components/body/user/displayCRUD';
 /* ページ全体にデフォルトのマージンやパディングがないことを確認してください。 */
 body,
 html {
@@ -8,6 +11,10 @@ html {
   padding: 0;
   height: 100%;
   box-sizing: border-box;
+}
+
+.app-body {
+  min-height: 100vh;
 }
 
 //mobileディスプレイ

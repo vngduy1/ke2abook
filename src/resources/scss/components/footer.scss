@@ -1,0 +1,146 @@
+/* フッター全体のスタイル */
+.footer-container {
+  background-color: #f8f9fa; /* 背景色を薄いグレーに設定 */
+  padding: 20px;
+  display: flex;
+  justify-content: space-around; /* 各セクションを均等に配置 */
+  text-align: left;
+  border-top: 1px solid #ddd;
+}
+
+.footer-section {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.footer-section h4 {
+  font-size: 18px; /* セクションタイトルのフォントサイズ */
+  color: #333; /* タイトルの文字色 */
+  margin-bottom: 10px;
+}
+
+.footer-section p,
+.footer-section a {
+  font-size: 14px; /* テキストのフォントサイズ */
+  color: #555; /* テキストの文字色 */
+  margin: 5px 0;
+}
+
+.footer-section a:hover {
+  color: #007bff; /* リンクにホバーしたときの色 */
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.footer-icon {
+  height: 40px;
+  width: 40px;
+}
+
+/* ======================== */
+/* Mobileディスプレイ */
+/* 最大幅480px以下の画面向け */
+@media (max-width: 480px) {
+  .footer-container {
+    flex-direction: column; /* セクションを縦に並べる */
+    padding: 10px; /* パディングを減らす */
+  }
+
+  .footer-section {
+    margin: 10px 0; /* セクション間の余白を広げる */
+    text-align: center; /* セクション内のテキストを中央に配置 */
+  }
+
+  .footer-section h4 {
+    font-size: 16px; /* モバイル用にフォントサイズを縮小 */
+  }
+
+  .footer-section p,
+  .footer-section a {
+    font-size: 12px; /* テキストのフォントサイズを縮小 */
+  }
+
+  .footer-bottom {
+    font-size: 10px; /* 小さな画面用にフッターの文字サイズを縮小 */
+  }
+
+  .footer-icon {
+    height: 30px;
+    width: 30px; /* アイコンのサイズを縮小 */
+  }
+}
+
+/* ======================== */
+/* Tabletディスプレイ */
+/* 幅481pxから768pxの画面向け */
+@media (max-width: 768px) and (min-width: 481px) {
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px; /* パディングを調整 */
+  }
+
+  .footer-section {
+    min-width: 300px;
+    margin: 0 10px; /* セクション間の余白 */
+    text-align: left; /* テキストの位置を左揃えに */
+  }
+
+  .footer-section h4 {
+    font-size: 17px; /* タブレット用に少しフォントサイズを調整 */
+  }
+
+  .footer-section p,
+  .footer-section a,
+  .footer-section address {
+    font-size: 13px; /* テキストのフォントサイズを少し大きく */
+  }
+
+  .footer-bottom {
+    font-size: 11px; /* タブレット用のフッター文字サイズ */
+  }
+
+  .footer-icon {
+    height: 35px;
+    width: 35px; /* アイコンのサイズを調整 */
+  }
+}
+
+/* ======================== */
+/* コンピューターディスプレイ */
+/* 幅769pxから1200pxの画面向け */
+@media (max-width: 1200px) and (min-width: 769px) {
+  .footer-container {
+    flex-direction: row; /* セクションを横に並べる */
+    padding: 20px; /* デフォルトのパディング */
+  }
+
+  .footer-section {
+    margin: 0 15px; /* セクション間の余白 */
+    text-align: left; /* テキストは左揃え */
+  }
+
+  .footer-section h4 {
+    font-size: 18px; /* 通常のフォントサイズ */
+  }
+
+  .footer-section p,
+  .footer-section a {
+    font-size: 14px; /* テキストのフォントサイズを戻す */
+  }
+
+  .footer-bottom {
+    font-size: 12px; /* 通常のフッター文字サイズ */
+  }
+
+  .footer-icon {
+    height: 40px;
+    width: 40px; /* アイコンのサイズを標準に戻す */
+  }
+}

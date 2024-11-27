@@ -1,0 +1,93 @@
+.table {
+  width: 100%; /* テーブルの幅 */
+  border-collapse: collapse; /* テーブル枠線を重ねる */
+  margin-top: 20px; /* 上の余白 */
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd; /* 枠線の色 */
+  padding: 8px; /* 内側の余白 */
+  text-align: left; /* テキストを左揃え */
+}
+
+.table th {
+  background-color: #f4f4f4; /* ヘッダーの背景色 */
+  font-weight: bold; /* 文字を太字に */
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9; /* 偶数行の背景色 */
+}
+
+.table tbody tr:hover {
+  background-color: #f1f1f1; /* 行をホバーした時の背景色 */
+}
+
+/* フレックスボックスで2つのボタンを同じ行に配置 */
+.action-cell {
+  justify-content: space-between; /* ボタンの間にスペースを挿入 */
+  gap: 10px; /* ボタン間の余白 */
+}
+
+/* ボタンスタイル */
+.btn {
+  text-decoration: none; /* 下線を削除 */
+  min-width: 54px;
+  padding: 5px 10px; /* 内側の余白 */
+  border-radius: 4px; /* 角を丸める */
+  color: #fff; /* テキスト色 */
+  display: inline-block; /* インラインブロックに設定 */
+  text-align: center; /* テキストを中央揃え */
+}
+
+.btn-primary {
+  background-color: #007bff; /* プライマリボタンの背景色 */
+  border: none; /* 枠線を削除 */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* ホバー時の背景色 */
+}
+
+.btn-danger {
+  background-color: #dc3545; /* 危険ボタンの背景色 */
+  border: none; /* 枠線を削除 */
+}
+
+.btn-danger:hover {
+  background-color: #a71d2a; /* ホバー時の背景色 */
+}
+
+/* レスポンシブ対応スタイル */
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    padding: 6px; /* 内側の余白 */
+    font-size: 14px; /* フォントサイズ */
+  }
+
+  .btn {
+    font-size: 16px; /* ボタンのフォントサイズ */
+    padding: 4px 8px; /* ボタンの内側の余白 */
+    margin: 4px;
+  }
+
+  .action-cell {
+    flex-direction: column; /* 小さな画面ではボタンを縦に配置 */
+    align-items: flex-start; /* 左揃え */
+  }
+}
+
+@media (max-width: 480px) {
+  .table th,
+  .table td {
+    font-size: 12px; /* フォントサイズ */
+    padding: 4px; /* 内側の余白 */
+  }
+
+  .btn {
+    font-size: 16px; /* ボタンのフォントサイズ */
+    padding: 3px 6px; /* ボタンの内側の余白 */
+  }
+}

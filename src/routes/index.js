@@ -1,7 +1,10 @@
+// import express from "express"
+const express = require('express')
+
+const { create } = require('../controllers/booksController')
+
 function route(app) {
-  app.get("/", (req, res) => {
-    app.render("home");
-  });
+  app.get('/create', create)
 }
 
-module.exports = route;
+module.exports = route
