@@ -46,13 +46,13 @@
           />
           <div class="dropdown-menu">
             {{#if user.isAdmin}}
-            <a href="/admin/manage">アカウント管理</a>
+            <a href="/admin/get-crud">アカウント管理</a>
             {{/if}}
-            <a href="/profile">プロフィール</a>
+            <a href="/api/profile">プロフィール</a>
             {{#unless user.isAdmin}}
             <a href="/cart">カート</a>
             {{/unless}}
-            <a href="/logout">ログアウト</a>
+            <a href="/api/logout">ログアウト</a>
           </div>
         </li>
         {{/if}}

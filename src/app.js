@@ -7,6 +7,8 @@ const connectDB = require('./config/connectDB')
 const session = require('express-session')
 // const route = require('./routes/index')
 const initWebRoutes = require('./routes/web')
+const adminWebRoutes = require('./routes/adminRoute')
+const userRoute = require('./routes/userRoute')
 require('dotenv').config()
 
 const userController = require('./controllers/userController')
@@ -47,6 +49,8 @@ app.use(
 
 //ルートをインポートする
 initWebRoutes(app)
+adminWebRoutes(app)
+userRoute(app)
 // route(app)
 
 //データベース接続

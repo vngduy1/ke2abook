@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Resetting some default styles */
 body,
 h1,
@@ -8,67 +9,56 @@ h5,
 h6,
 p {
   margin: 0;
-  padding: 0;
-}
+  padding: 0; }
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f8f9fa; /* 背景色をライトグレーに設定 */
-  color: #212529; /* テキスト色をダークに設定 */
-  padding: 20px;
-}
+  background-color: #f8f9fa;
+  /* 背景色をライトグレーに設定 */
+  color: #212529;
+  /* テキスト色をダークに設定 */
+  padding: 20px; }
 
 .container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #ffffff; /* 背景色を白に設定 */
+  background-color: #ffffff;
+  /* 背景色を白に設定 */
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 微妙な影を追加 */
-}
-
-// .row {
-//   display: flex;
-//   flex-wrap: wrap;
-//   margin: -10px;
-// }
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* 微妙な影を追加 */ }
 
 .login-mt-100 {
-  margin-top: 100px;
-}
+  margin-top: 100px; }
+
 .form-row {
   display: flex;
   flex-wrap: wrap;
-  margin: -5px;
-}
+  margin: -5px; }
 
 .form-group {
   margin: 10px 5px;
-  flex: 1;
-}
+  flex: 1; }
 
 .col-12 {
   flex: 100%;
   margin-bottom: 15px;
   font-size: 1.5rem;
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 .col-md-6 {
   flex: 50%;
-  padding: 0 10px;
-}
+  padding: 0 10px; }
 
 .col-md-3 {
   flex: 25%;
-  padding: 0 10px;
-}
+  padding: 0 10px; }
 
 label {
   display: block;
   margin-bottom: 5px;
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 input,
 select {
@@ -77,15 +67,13 @@ select {
   border: 1px solid #ced4da;
   border-radius: 4px;
   font-size: 1rem;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 input:focus,
 select:focus {
   border-color: #80bdff;
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
-}
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.25); }
 
 button {
   display: inline-block;
@@ -93,68 +81,55 @@ button {
   font-size: 1rem;
   font-weight: bold;
   color: #fff;
-  background-color: #007bff; /* プライマリーブルーを使用 */
+  background-color: #007bff;
+  /* プライマリーブルーを使用 */
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
-}
+  transition: background-color 0.3s; }
 
 button:hover {
-  background-color: #0056b3; /* ブルーを少し暗く設定 */
-}
+  background-color: #0056b3;
+  /* ブルーを少し暗く設定 */ }
 
 /* フォームグループの下部に余白を追加 */
 .form-group {
-  margin-bottom: 15px;
-}
+  margin-bottom: 15px; }
 
 .text-center {
-  text-align: center;
-}
+  text-align: center; }
 
 /* --- モバイルデザイン --- */
 @media (max-width: 576px) {
   .container {
-    padding: 10px;
-  }
+    padding: 10px; }
   .col-md-6,
   .col-md-3 {
     flex: 100%;
-    padding: 0;
-  }
-}
+    padding: 0; } }
 
 /* --- タブレットデザイン --- */
 @media (min-width: 577px) and (max-width: 768px) {
   .container {
-    max-width: 700px;
-  }
+    max-width: 700px; }
   .col-md-6 {
-    flex: 50%;
-  }
+    flex: 50%; }
   .col-md-3 {
-    flex: 33.33%;
-  }
-}
+    flex: 33.33%; } }
 
 /* --- コンピュータデザイン --- */
 @media (min-width: 769px) {
   .container {
-    max-width: 800px;
-  }
-}
+    max-width: 800px; } }
 
 .alert {
   padding: 15px;
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 4px;
-  font-size: 14px;
-}
+  font-size: 14px; }
 
 .alert-danger {
   color: #a94442;
   background-color: #f2dede;
-  border-color: #ebccd1;
-}
+  border-color: #ebccd1; }
