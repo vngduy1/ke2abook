@@ -11,7 +11,7 @@ module.exports = {
         lastName: 'admin',
         address: 'admin.JP',
         phonenumber: '123456789',
-        image: null,
+        image: '123',
         createdAt: new Date(),
         updatedAt: new Date(),
       },

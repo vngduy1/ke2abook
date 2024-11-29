@@ -33,6 +33,9 @@ body {
 //   margin: -10px;
 // }
 
+.login-mt-100 {
+  margin-top: 100px;
+}
 .form-row {
   display: flex;
   flex-wrap: wrap;
@@ -137,4 +140,18 @@ button:hover {
   .container {
     max-width: 800px;
   }
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
 }

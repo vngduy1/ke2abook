@@ -90,6 +90,42 @@
 .header-icon {
   display: none; }
 
+.avatar-menu {
+  position: relative;
+  display: inline-block; }
+
+.avatar-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer; }
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  min-width: 150px;
+  z-index: 10; }
+
+.dropdown-menu.show {
+  display: block; }
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 10px;
+  text-decoration: none;
+  color: #333;
+  text-align: start; }
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0; }
+
 /* 小さな画面向けの構成 */
 @media (max-width: 768px) and (min-width: 481px) {
   .header-icon {
@@ -397,6 +433,9 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   /* 微妙な影を追加 */ }
 
+.login-mt-100 {
+  margin-top: 100px; }
+
 .form-row {
   display: flex;
   flex-wrap: wrap;
@@ -484,6 +523,18 @@ button:hover {
 @media (min-width: 769px) {
   .container {
     max-width: 800px; } }
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 14px; }
+
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1; }
 
 .table {
   width: 100%;
