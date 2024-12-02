@@ -2,8 +2,8 @@
 @import 'components/header';
 @import 'components/footer';
 @import 'components/body/home';
-@import 'components/body/user/crud';
-@import 'components/body/user/displayCRUD';
+@import 'components/body/admin/crud';
+@import 'components/body/admin/displayCRUD';
 /* ページ全体にデフォルトのマージンやパディングがないことを確認してください。 */
 body,
 html {

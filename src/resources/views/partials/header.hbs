@@ -35,6 +35,27 @@
       <ul class="nav-list">
         <li><a href="/about">紹介</a></li>
         <li><a href="/contact">お問い合わせ</a></li>
+        {{#unless user}}
+        <li><a href="/api/sign-in">ログイン</a></li>
+        {{/unless}} {{#if user}}
+        <li class="avatar-menu">
+          <img
+            src="data:image/jpeg;base64,{{{user.image}}}"
+            alt="Avatar"
+            class="avatar-img"
+          />
+          <div class="dropdown-menu">
+            {{#if user.isAdmin}}
+            <a href="/admin/manage">アカウント管理</a>
+            {{/if}}
+            <a href="/profile">プロフィール</a>
+            {{#unless user.isAdmin}}
+            <a href="/cart">カート</a>
+            {{/unless}}
+            <a href="/logout">ログアウト</a>
+          </div>
+        </li>
+        {{/if}}
       </ul>
     </nav>
   </div>

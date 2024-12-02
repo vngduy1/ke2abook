@@ -14,8 +14,7 @@ let createNewUser = async (data) => {
         lastName: data.lastName,
         phonenumber: data.phonenumber,
         address: data.address,
-        gender: data.gender,
-        roleId: data.roleId,
+        image: data.image,
       })
       resolve('createNewUser successfully')
     } catch (error) {

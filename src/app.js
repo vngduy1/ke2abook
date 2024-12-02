@@ -4,9 +4,12 @@ const handlebars = require('express-handlebars')
 const app = express()
 const methodOverride = require('method-override')
 const connectDB = require('./config/connectDB')
-
+const session = require('express-session')
 // const route = require('./routes/index')
 const initWebRoutes = require('./routes/web')
+require('dotenv').config()
+
+const userController = require('./controllers/userController')
 
 // method-override ミドルウェアを使用して、HTTP メソッドを上書きできるように設定します。
 // '_method' はリクエストのクエリまたはボディに含まれるパラメータ名で、
@@ -33,6 +36,15 @@ app
   //パス: D:\ke2a\book\src\resources\views
   .set('views', path.join(__dirname, 'resources', 'views'))
 
+app.use(
+  session({
+    secret: process.env.SECRET, //セッションを暗号化するための秘密文字列
+    resave: false, // 変更しない場合はセッションを保存しない
+    saveUninitialized: false, // 空のセッション Cookie を保存しない
+    cookie: { maxAge: 3600000 }, // セッションの有効期間 (1 時間)
+  }),
+)
+
 //ルートをインポートする
 initWebRoutes(app)
 // route(app)
@@ -41,7 +53,7 @@ initWebRoutes(app)
 connectDB()
 
 app.get('/', (req, res) => {
-  res.render('home')
+  res.render('home.hbs')
 })
 
 //ローカルポート

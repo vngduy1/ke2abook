@@ -15,3 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
     navMenu.classList.toggle('active') // メニューを開く/閉じる
   })
 })
+
+document.addEventListener('DOMContentLoaded', function () {
+  const avatarMenu = document.querySelector('.avatar-menu')
+  const dropdownMenu = avatarMenu.querySelector('.dropdown-menu')
+  const avatarImg = avatarMenu.querySelector('.avatar-img')
+
+  avatarImg.addEventListener('click', function () {
+    dropdownMenu.classList.toggle('show') // Hiển thị hoặc ẩn menu
+  })
+
+  // Đảm bảo rằng menu sẽ ẩn nếu nhấn ra ngoài
+  document.addEventListener('click', function (e) {
+    if (!avatarMenu.contains(e.target)) {
+      dropdownMenu.classList.remove('show')
+    }
+  })
+})

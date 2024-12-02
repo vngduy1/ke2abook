@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(models.CartItem, { foreignKey: 'userId' })
     }
   }
   User.init(
@@ -19,7 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       lastName: DataTypes.STRING,
       address: DataTypes.STRING,
       phonenumber: DataTypes.STRING,
-      image: DataTypes.STRING,
+      image: DataTypes.BLOB('long'),
+      isAdmin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
     },
     {
       sequelize,
