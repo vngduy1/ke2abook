@@ -1,44 +1,10 @@
 const db = require('../models/index') // モデルをインポート
 const CRUDService = require('../services/CRUDService.js')
-/*
-// ホームページのデータを取得する関数
-let getHomePage = async (req, res) => {
-  try {
-    // Userモデルからすべてのデータを取得
-    let data = await db.User.findAll()
-
-    // SequelizeのデータをJSON形式に変換
-    let users = await data.map((user) => user.toJSON())
-
-    // データをテンプレートに渡してレンダリング
-    return res.render('new.hbs', { users })
-  } catch (error) {
-    // エラーが発生した場合にコンソールにログを出力
-    console.log('error from getHomePage', error)
-  }
-}
-*/
 
 let getHomePage = async (req, res) => {
   let user = (await req.session.user) || null
-  // let user = (await db.User.findOne({ where: { id: req?.params?.id } })) || null
-  // return
-  // if (user && user?.image) {
-  //   const imageBase64 = new Buffer(user.image, 'base64')
-  //   req.session.user.imageBase64 = `data:image/jpeg;base64,${imageBase64}`
-
-  //   // const image = await new Buffer(user.image, 'base64')
-  //   // .toString('binary')
-
-  //   user.image = req.session.user.imageBase64
-  //   // user.image = image
-  // }
 
   res.render('home.hbs', { user })
-}
-
-let getUserData = (req) => {
-  return req.session.user
 }
 
 let getCRUD = (req, res) => {
@@ -62,7 +28,9 @@ let postCRUD = async (req, res) => {
 let displayGetCRUD = async (req, res) => {
   try {
     let data = await CRUDService.getAllUser()
-    return res.render('./admin/displayCRUD.hbs', { dataTable: data })
+
+    let user = (await req.session.user) || null
+    return res.render('./admin/displayCRUD.hbs', { dataTable: data, user })
   } catch (error) {
     console.log('error from postCRUD', error)
   }
@@ -71,10 +39,13 @@ let displayGetCRUD = async (req, res) => {
 let displayEditCRUD = async (req, res) => {
   try {
     let userId = req.query.id
+
+    let user = (await req.session.user) || null
     if (userId) {
       let userData = await CRUDService.getUserInfoById(userId)
       return res.render('./admin/editCRUD.hbs', {
         userData: userData,
+        user,
       })
     } else {
       return res.send('user not found from displayEditCRUD')
@@ -103,7 +74,6 @@ let deleteCRUD = async (req, res) => {
       await CRUDService.deleteUserById(id)
       let data = await CRUDService.getAllUser()
       return res.render('./admin/displayCRUD.hbs', { dataTable: data })
-      // return res.send('delete success')
     } else {
       return res.send('not found')
     }

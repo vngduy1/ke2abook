@@ -1,0 +1,118 @@
+<body>
+  <div class="container">
+    <div class="form-container">
+      <form
+        action="/api/update-profile"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="text-center">
+          <img
+            id="profileImage"
+            class="avatar-img-profile"
+            src="data:image/jpeg;base64,{{userData.user.image}}"
+            alt="プロフィール画像"
+            onclick="triggerFileInput()"
+          />
+          <input
+            type="file"
+            id="imageInput"
+            name="image"
+            accept="image/*"
+            style="display: none"
+            onchange="previewTemporaryImage(event)"
+          />
+        </div>
+        <div class="form-row">
+          <div class="col-12 mb-3 text-center">
+            <h3>プロフィール編集</h3>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="email">メールアドレス</label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              value="{{userData.user.email}}"
+              required
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="password">パスワード</label>
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              placeholder="新しいパスワード"
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="firstName">名</label>
+            <input
+              type="text"
+              class="form-control"
+              name="firstName"
+              value="{{userData.user.firstName}}"
+              required
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="lastName">姓</label>
+            <input
+              type="text"
+              class="form-control"
+              name="lastName"
+              value="{{userData.user.lastName}}"
+              required
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="address">住所</label>
+          <input
+            type="text"
+            class="form-control"
+            name="address"
+            value="{{userData.user.address}}"
+            required
+          />
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="phonenumber">電話番号</label>
+            <input
+              type="text"
+              class="form-control"
+              name="phonenumber"
+              value="{{userData.user.phonenumber}}"
+              required
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">更新</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Hàm mở file picker khi nhấn vào ảnh
+    function triggerFileInput() {
+      document.getElementById('imageInput').click()
+    }
+
+    // Hàm xem trước ảnh tạm thời
+    function previewTemporaryImage(event) {
+      const file = event.target.files[0]
+      const preview = document.getElementById('profileImage')
+      if (file) {
+        const reader = new FileReader()
+        reader.onload = () => {
+          preview.src = reader.result // Hiển thị ảnh tạm thời
+        }
+        reader.readAsDataURL(file)
+      }
+    }
+  </script>
+</body>

@@ -4,14 +4,12 @@ module.exports = (sequelize, DataTypes) => {
   class Book extends Model {
     static associate(models) {
       //関係を識別する
-      Book.hasMany(models.CartItem, { foreignKey: 'bookId' })
-      //User(admin)
-      Book.belongsTo(models.User, { foreignKey: 'adminId', as: 'admin' })
+      Book.hasMany(models.CartItem, { foreignKey: 'bookId', as: 'cartItems' })
     }
   }
   Book.init(
     {
-      name: DataTypes.STRING,
+      type: DataTypes.STRING,
       image: DataTypes.TEXT,
       title: DataTypes.TEXT,
       description: DataTypes.TEXT,
