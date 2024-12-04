@@ -1,18 +1,18 @@
 const express = require('express')
 
-const crudController = require('../controllers/crudController')
+const adminController = require('../controllers/adminController')
 
 const { isAdmin } = require('../middleware/authenticated')
 
 const router = express.Router()
 
 let adminWebRoutes = (app) => {
-  router.get('/crud', isAdmin, crudController.getCRUD)
-  router.post('/post-crud', isAdmin, crudController.postCRUD)
-  router.get('/get-crud', isAdmin, crudController.displayGetCRUD)
-  router.get('/edit-crud', isAdmin, crudController.displayEditCRUD)
-  router.post('/put-crud', isAdmin, crudController.putCRUD)
-  router.get('/delete-crud', isAdmin, crudController.deleteCRUD)
+  router.get('/crud', isAdmin, adminController.getCRUD)
+  router.post('/post-crud', isAdmin, adminController.postCRUD)
+  router.get('/get-crud', isAdmin, adminController.displayGetCRUD)
+  router.get('/edit-crud', isAdmin, adminController.displayEditCRUD)
+  router.post('/put-crud', isAdmin, adminController.putCRUD)
+  router.get('/delete-crud', isAdmin, adminController.deleteCRUD)
 
   return app.use('/admin', router)
 }

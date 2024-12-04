@@ -11,23 +11,17 @@ let userRoute = (app) => {
   router.get('/sign-in', isGuest, userController.handleSignIn)
   router.post('/login', userController.handleLogin)
   router.get('/logout', userController.handleLogout)
-  router.get('/profile', userController.getProfilePage)
+  router.get('/profile', isAuthenticated, userController.getProfilePage)
   router.post(
     '/update-profile',
     upload.single('image'),
+    isAuthenticated,
     userController.handleEditProfile,
   )
-  router.get('/get-all-users', isAuthenticated, userController.getAllUser)
   router.post(
     '/create-new-user',
     upload.single('image'),
     userController.handleCreateNewUser,
-  )
-  router.put('/edit-user', isAuthenticated, userController.handleEditUser)
-  router.delete(
-    '/delete-user',
-    isAuthenticated,
-    userController.handleDeleteUser,
   )
 
   return app.use('/api', router)

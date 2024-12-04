@@ -6,12 +6,11 @@ const methodOverride = require('method-override')
 const connectDB = require('./config/connectDB')
 const session = require('express-session')
 // const route = require('./routes/index')
-const initWebRoutes = require('./routes/web')
+const homeRoute = require('./routes/homeRoute')
 const adminWebRoutes = require('./routes/adminRoute')
 const userRoute = require('./routes/userRoute')
+const bookRoute = require('./routes/bookRoute')
 require('dotenv').config()
-
-const userController = require('./controllers/userController')
 
 // method-override ミドルウェアを使用して、HTTP メソッドを上書きできるように設定します。
 // '_method' はリクエストのクエリまたはボディに含まれるパラメータ名で、
@@ -48,9 +47,10 @@ app.use(
 )
 
 //ルートをインポートする
-initWebRoutes(app)
+homeRoute(app)
 adminWebRoutes(app)
 userRoute(app)
+bookRoute(app)
 // route(app)
 
 //データベース接続

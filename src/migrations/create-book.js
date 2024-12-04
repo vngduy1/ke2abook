@@ -11,15 +11,28 @@ module.exports = {
       },
       type: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       image: {
         type: Sequelize.BLOB('long'),
+        allowNull: true,
       },
       title: {
         type: Sequelize.TEXT,
+        allowNull: false,
       },
       description: {
         type: Sequelize.TEXT,
+        allowNull: true,
+      },
+      price: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
+        defaultValue: 0, // Giá mặc định là 0
+      },
+      author: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,

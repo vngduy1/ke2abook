@@ -1,5 +1,4 @@
-const db = require('../models/index') // モデルをインポート
-const CRUDService = require('../services/CRUDService.js')
+const adminService = require('../services/adminService.js')
 
 let getHomePage = async (req, res) => {
   let user = (await req.session.user) || null
@@ -17,7 +16,7 @@ let getCRUD = (req, res) => {
 
 let postCRUD = async (req, res) => {
   try {
-    await CRUDService.createNewUser(req.body)
+    await adminService.createNewUser(req.body)
 
     return res.render('./user/login.hbs')
   } catch (error) {
@@ -27,7 +26,7 @@ let postCRUD = async (req, res) => {
 
 let displayGetCRUD = async (req, res) => {
   try {
-    let data = await CRUDService.getAllUser()
+    let data = await adminService.getAllUser()
 
     let user = (await req.session.user) || null
     return res.render('./admin/displayCRUD.hbs', { dataTable: data, user })
@@ -42,7 +41,7 @@ let displayEditCRUD = async (req, res) => {
 
     let user = (await req.session.user) || null
     if (userId) {
-      let userData = await CRUDService.getUserInfoById(userId)
+      let userData = await adminService.getUserInfoById(userId)
       return res.render('./admin/editCRUD.hbs', {
         userData: userData,
         user,
@@ -58,7 +57,7 @@ let displayEditCRUD = async (req, res) => {
 let putCRUD = async (req, res) => {
   try {
     let data = req.body
-    let allUser = await CRUDService.updateUserData(data)
+    let allUser = await adminService.updateUserData(data)
     let users = allUser.map((user) => user.toJSON())
     return res.render('./admin/displayCRUD.hbs', { dataTable: users })
   } catch (error) {
@@ -71,8 +70,8 @@ let deleteCRUD = async (req, res) => {
     let id = req.query.id
 
     if (id) {
-      await CRUDService.deleteUserById(id)
-      let data = await CRUDService.getAllUser()
+      await adminService.deleteUserById(id)
+      let data = await adminService.getAllUser()
       return res.render('./admin/displayCRUD.hbs', { dataTable: data })
     } else {
       return res.send('not found')

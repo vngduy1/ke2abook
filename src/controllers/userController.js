@@ -151,67 +151,12 @@ const handleEditProfile = async (req, res) => {
   }
 }
 
-const getAllUser = async (req, res) => {
-  let id = req.query.id
-  if (!id) {
-    return res.status(200).json({
-      errCode: 1,
-      errMessage: '必須パラメータが欠落している',
-      users: [],
-    })
-  }
-  let users = await userService.getAllUser(id)
-
-  return res.status(200).json({
-    errCode: 0,
-    errMessage: 'getAllUser success',
-    users,
-  })
-}
-
-const handleEditUser = async (req, res) => {
-  try {
-    let data = req.body
-    let message = await userService.editUser(data)
-    return res.status(200).json(message)
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-const handleDeleteUser = async (req, res) => {
-  if (!req.body.id) {
-    return res.status(200).json({
-      errCode: 1,
-      errMessage: 'missing required parameters',
-    })
-  }
-  let message = await userService.deleteUser(req.body.id)
-  return res.status(200).json(message)
-}
-
-const getAllCode = async (req, res) => {
-  try {
-    let data = await userService.getAllCodeService(req.query.type)
-    return res.status(200).json(data)
-  } catch (error) {
-    console.log('getAllCode', error)
-    return res
-      .status(200)
-      .json({ errCode: -1, errMessage: 'Error from GetALLcode' })
-  }
-}
-
 module.exports = {
   handleSignUp,
   handleLogin,
   handleLogout,
   getProfilePage,
   handleEditProfile,
-  getAllUser,
   handleCreateNewUser,
-  handleEditUser,
-  handleDeleteUser,
-  getAllCode,
   handleSignIn,
 }
