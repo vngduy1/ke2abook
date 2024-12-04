@@ -1,7 +1,11 @@
+require('dotenv').config()
+
 const { Sequelize } = require('sequelize')
-const sequelize = new Sequelize('ke2abook', 'root', null, {
+const { DB_NAME, DB_USER, DB_PASS, DB_HOST, DB_DIALECT } = process.env
+
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASS, {
   host: 'localhost',
-  dialect: 'mysql',
+  dialect: DB_DIALECT,
   logging: false,
 })
 let connectDB = async () => {

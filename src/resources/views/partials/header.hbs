@@ -33,9 +33,21 @@
     {{!-- navメニュー --}}
     <nav class="nav-menu">
       <ul class="nav-list">
+        {{#if user.isAdmin}}
+        <li>
+          <a class="btn btn-primary" href="/book/create-new-book"
+            >本アップロード</a
+          >
+        </li>
+        {{else}}
+        <li>
+          <a class="btn btn-primary" href="/book/create-new-book"
+            >本アップロード</a
+          >
+        </li>
         <li><a href="/about">紹介</a></li>
         <li><a href="/contact">お問い合わせ</a></li>
-        {{#unless user}}
+        {{/if}} {{#unless user}}
         <li><a href="/api/sign-in">ログイン</a></li>
         {{/unless}} {{#if user}}
         <li class="avatar-menu">
@@ -47,7 +59,7 @@
           <div class="dropdown-menu">
             {{#if user.isAdmin}}
             <a href="/admin/get-crud">アカウント管理</a>
-            {{/if}}
+            {{!-- <a href="/admin/get-crud">本管理</a> --}} {{/if}}
             <a href="/api/profile">プロフィール</a>
             {{#unless user.isAdmin}}
             <a href="/cart">カート</a>

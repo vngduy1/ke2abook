@@ -9,13 +9,26 @@ module.exports = (sequelize, DataTypes) => {
   }
   Book.init(
     {
-      type: DataTypes.STRING,
-      image: DataTypes.TEXT,
-      title: DataTypes.TEXT,
-      description: DataTypes.TEXT,
-      adminId: {
-        type: DataTypes.INTEGER,
+      title: {
+        type: DataTypes.TEXT,
+        allowNull: false, // Không cho phép null
+      },
+      description: {
+        type: DataTypes.TEXT,
         allowNull: false,
+      },
+      image: DataTypes.BLOB('long'),
+      type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      price: {
+        type: DataTypes.FLOAT, // Kiểu dữ liệu giá (số thực)
+        allowNull: false,
+      },
+      author: {
+        type: DataTypes.STRING, // Thêm trường tác giả
+        allowNull: true,
       },
     },
     {

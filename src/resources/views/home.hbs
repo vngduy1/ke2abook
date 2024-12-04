@@ -1,138 +1,22 @@
 <div class="book-container">
   <!-- Book 1 -->
-  <div class="book-item">
-    <a href="#">
-      <img
-        class="book-image"
-        src="path-to-image/book1.jpg"
-        alt="Academic Writing"
-      />
-      <div class="book-info">
-        <p class="book-title">
-          Academic Writing Tên sản phẩm rất dài và sẽ được cắt ngắn nếu vượt quá
-          giới hạn
-        </p>
-        <p class="book-author">Stephen Bailey</p>
-        <p class="book-price">¥5,333</p>
-      </div>
-    </a>
-  </div>
 
-  <!-- Book 2 -->
+  {{#if books.length}} {{#each books}}
   <div class="book-item">
-    <a href="/">
+    <a href="/book/details/{{id}}">
       <img
         class="book-image"
-        src="path-to-image/book2.jpg"
-        alt="Haunted Houses Handbook"
+        src="data:image/jpeg;base64,{{image}}"
+        alt="{{title}}"
       />
       <div class="book-info">
-        <p class="book-title">Haunted Houses Handbook</p>
-        <p class="book-author">Monica Carretero</p>
-        <p class="book-price">¥2,714</p>
+        <p>{{title}}</p>
+        <p>{{author}}</p>
+        <p>¥{{price}}</p>
       </div>
     </a>
   </div>
-
-  <!-- Book 3 -->
-  <div class="book-item">
-    <a href="/">
-      <img
-        class="book-image"
-        src="path-to-image/book3.jpg"
-        alt="Achieving Global Open Access"
-      />
-      <div class="book-info">
-        <p class="book-title">Achieving Global Open Access</p>
-        <p class="book-author">Stephen Pinfield</p>
-        <p class="book-price">¥9,617</p>
-      </div>
-    </a>
-  </div>
-
-  <!-- Book 4 -->
-  <div class="book-item">
-    <a href="/">
-      <img
-        class="book-image"
-        src="path-to-image/book4.jpg"
-        alt="Dual キャリアカップル"
-      />
-      <div class="book-info">
-        <p class="book-title">Dual キャリアカップル</p>
-        <p class="book-author">シモーネ・P</p>
-        <p class="book-price">¥2,420</p>
-      </div>
-    </a>
-  </div>
-  <div class="book-item">
-    <a href="/">
-      <img
-        class="book-image"
-        src="path-to-image/book4.jpg"
-        alt="Dual キャリアカップル"
-      />
-      <div class="book-info">
-        <p class="book-title">Dual キャリアカップル</p>
-        <p class="book-author">シモーネ・P</p>
-        <p class="book-price">¥2,420</p>
-      </div>
-    </a>
-  </div>
-  <div class="book-item">
-    <a href="/">
-      <img
-        class="book-image"
-        src="path-to-image/book4.jpg"
-        alt="Dual キャリアカップル"
-      />
-      <div class="book-info">
-        <p class="book-title">Dual キャリアカップル</p>
-        <p class="book-author">シモーネ・P</p>
-        <p class="book-price">¥2,420</p>
-      </div>
-    </a>
-  </div>
-  <div class="book-item">
-    <a href="/">
-      <img
-        class="book-image"
-        src="path-to-image/book4.jpg"
-        alt="Dual キャリアカップル"
-      />
-      <div class="book-info">
-        <p class="book-title">Dual キャリアカップル</p>
-        <p class="book-author">シモーネ・P</p>
-        <p class="book-price">¥2,420</p>
-      </div>
-    </a>
-  </div>
-  <div class="book-item">
-    <a href="/">
-      <img
-        class="book-image"
-        src="path-to-image/book4.jpg"
-        alt="Dual キャリアカップル"
-      />
-      <div class="book-info">
-        <p class="book-title">Dual キャリアカップル</p>
-        <p class="book-author">シモーネ・P</p>
-        <p class="book-price">¥2,420</p>
-      </div>
-    </a>
-  </div>
-  <div class="book-item">
-    <a href="/">
-      <img
-        class="book-image"
-        src="path-to-image/book4.jpg"
-        alt="Dual キャリアカップル"
-      />
-      <div class="book-info">
-        <p class="book-title">Dual キャリアカップル</p>
-        <p class="book-author">シモーネ・P</p>
-        <p class="book-price">¥2,420</p>
-      </div>
-    </a>
-  </div>
+  {{/each}} {{else}}
+  <p>本がありません。</p>
+  {{/if}}
 </div>
