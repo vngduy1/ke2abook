@@ -1,101 +1,95 @@
-<body>
-  <div class="crebook-container">
-    <h2 class="crebook-title">Create a New Book</h2>
-    <form
-      action="/book/create-new-book"
-      method="POST"
-      enctype="multipart/form-data"
-      class="crebook-form"
-    >
-      <!-- Title -->
-      <div class="crebook-form-group">
-        <label for="title" class="crebook-label">Title:</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          class="crebook-input"
-          required
-        />
-      </div>
+<div class="create-book-container">
+  <h1>Create a New Book</h1>
+  <form
+    action="/book/create-new-book"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <div class="form-group">
+      <label for="title" class="crebook-label">Title:</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        placeholder="Enter book title"
+        required
+      />
+    </div>
 
-      <!-- Description -->
-      <div class="crebook-form-group">
-        <label for="description" class="crebook-label">Description:</label>
-        <textarea
-          id="description"
-          name="description"
-          class="crebook-textarea"
-          rows="4"
-          required
-        ></textarea>
-      </div>
+    <div class="form-group">
+      <label for="author" class="crebook-label">Author:</label>
+      <input
+        type="text"
+        id="author"
+        name="author"
+        placeholder="Enter author name"
+        required
+      />
+    </div>
 
-      <!-- Type -->
-      <div class="crebook-form-group">
-        <label for="type" class="crebook-label">Type:</label>
-        <input
-          type="text"
-          id="type"
-          name="type"
-          class="crebook-input"
-          required
-        />
-      </div>
+    <div class="form-group">
+      <label for="category" class="crebook-label">Category:</label>
+      <select id="category" name="categoryId" required class="crebook-input">
+        {{#each categories}}
+        <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
 
-      <div class="crebook-form-group">
-        <label for="price" class="crebook-label">Price:</label>
-        <input
-          type="number"
-          id="price"
-          name="price"
-          class="crebook-input"
-          required
-          step="0.01"
-          min="0"
-        />
-      </div>
+    <div class="form-group">
+      <label for="description" class="crebook-label">Description:</label>
+      <textarea
+        id="description"
+        name="description"
+        placeholder="Enter book description"
+        required
+      ></textarea>
+    </div>
+    <input type="hidden" name="userId" value="{{user.id}}" />
+    <div class="form-group reading-status-group">
+      <label for="status">読書状況:</label>
+      <select id="status" name="status" required>
+        <option value="未読">未読</option>
+        <!-- Chưa đọc -->
+        <option value="読書中">読書中</option>
+        <!-- Đang đọc -->
+        <option value="読了">読了</option>
+        <!-- Đã đọc -->
+      </select>
 
-      <div class="crebook-form-group">
-        <label for="author" class="crebook-label">Author:</label>
-        <input
-          type="text"
-          id="author"
-          name="author"
-          class="crebook-input"
-          required
-        />
-      </div>
+      <label for="owned" class="checkbox-label">
+        <input type="checkbox" id="owned" name="owned" />
+        所有
+      </label>
+    </div>
 
-      <!-- Image Preview -->
-      <div class="crebook-form-group">
-        <label for="image" class="crebook-label">Image:</label>
-        <input
-          type="file"
-          id="image"
-          name="image"
-          accept="image/*"
-          class="crebook-input"
-          onchange="previewImage(event)"
-        />
-      </div>
-
-      <!-- Submit Button -->
-      <div class="crebook-form-group">
-        <button type="submit" class="crebook-btn">制作</button>
-      </div>
-
-      <div class="crebook-image-preview">
+    <div class="form-group">
+      <label for="image" class="crebook-label">Cover Image:</label>
+      <input
+        type="file"
+        id="image"
+        name="image"
+        accept="image/*"
+        class="crebook-input"
+        onchange="previewImage(event)"
+      />
+      <!-- Vùng hiển thị hình ảnh xem trước -->
+      <div class="image-preview-container">
         <img
           id="image-preview"
+          alt="Preview Image"
+          class="image-preview"
           style="display: none"
-          alt="Image Preview"
-          class="crebook-preview-img"
         />
       </div>
-    </form>
-  </div>
-</body>
+    </div>
+    {{#if messageError}}
+    <p style="color: red">{{messageError}}</p>
+    {{/if}}
+    <button type="submit" class="submit-button">Create</button>
+  </form>
+</div>
+
 <script>
   function previewImage(event) {
     const file = event.target.files[0]

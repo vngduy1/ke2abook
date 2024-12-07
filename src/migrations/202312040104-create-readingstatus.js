@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('CartItems', {
+    await queryInterface.createTable('ReadingStatuses', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -13,30 +13,30 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Users', // Tên bảng User (cần trùng với tên bảng trong migration User)
+          model: 'Users',
           key: 'id',
         },
-        onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
       bookId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Books', // Tên bảng Book (cần trùng với tên bảng trong migration Book)
+          model: 'Books',
           key: 'id',
         },
-        onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-      },
-      quantity: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        defaultValue: 1,
+        onUpdate: 'CASCADE',
       },
       status: {
         type: Sequelize.STRING,
-        defaultValue: 'pending',
+        allowNull: false,
+      },
+      owned: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
@@ -48,8 +48,7 @@ module.exports = {
       },
     })
   },
-
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('CartItems')
+    await queryInterface.dropTable('ReadingStatuses')
   },
 }

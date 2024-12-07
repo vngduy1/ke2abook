@@ -1,8 +1,9 @@
 /* フッター全体のスタイル */
 .footer-container {
   background-color: #f8f9fa; /* 背景色を薄いグレーに設定 */
-  padding: 20px;
+  padding: 20px 0;
   display: flex;
+  gap: 20px;
   justify-content: space-around; /* 各セクションを均等に配置 */
   text-align: left;
   border-top: 1px solid #ddd;
@@ -49,7 +50,6 @@
 @media (max-width: 480px) {
   .footer-container {
     flex-direction: column; /* セクションを縦に並べる */
-    padding: 10px; /* パディングを減らす */
   }
 
   .footer-section {
@@ -83,7 +83,6 @@
   .footer-container {
     display: flex;
     flex-wrap: wrap;
-    padding: 15px; /* パディングを調整 */
   }
 
   .footer-section {
@@ -118,7 +117,6 @@
 @media (max-width: 1200px) and (min-width: 769px) {
   .footer-container {
     flex-direction: row; /* セクションを横に並べる */
-    padding: 20px; /* デフォルトのパディング */
   }
 
   .footer-section {

@@ -3,8 +3,9 @@
 .footer-container {
   background-color: #f8f9fa;
   /* 背景色を薄いグレーに設定 */
-  padding: 20px;
+  padding: 20px 0;
   display: flex;
+  gap: 20px;
   justify-content: space-around;
   /* 各セクションを均等に配置 */
   text-align: left;
@@ -50,9 +51,7 @@
 @media (max-width: 480px) {
   .footer-container {
     flex-direction: column;
-    /* セクションを縦に並べる */
-    padding: 10px;
-    /* パディングを減らす */ }
+    /* セクションを縦に並べる */ }
   .footer-section {
     margin: 10px 0;
     /* セクション間の余白を広げる */
@@ -79,9 +78,7 @@
 @media (max-width: 768px) and (min-width: 481px) {
   .footer-container {
     display: flex;
-    flex-wrap: wrap;
-    padding: 15px;
-    /* パディングを調整 */ }
+    flex-wrap: wrap; }
   .footer-section {
     min-width: 300px;
     margin: 0 10px;
@@ -110,9 +107,7 @@
 @media (max-width: 1200px) and (min-width: 769px) {
   .footer-container {
     flex-direction: row;
-    /* セクションを横に並べる */
-    padding: 20px;
-    /* デフォルトのパディング */ }
+    /* セクションを横に並べる */ }
   .footer-section {
     margin: 0 15px;
     /* セクション間の余白 */

@@ -10,17 +10,20 @@
     <div class="header-icon">
       <!-- アイコンで検索バーを表示 -->
       <div class="search-toggle">
+        {{!--
         <img
           src="/images/icon/search.svg"
           alt="Search Icon"
           class="search-icon"
         />
+        --}}
       </div>
       <!-- アイコンでナビゲーションメニューを表示 -->
       <div class="nav-toggle">
         <img src="/images/icon/nav.svg" alt="Nav Icon" class="nav-icon" />
       </div>
     </div>
+    {{!--
     <div class="search-bar">
       <input
         type="text"
@@ -29,17 +32,10 @@
       />
       <button class="search-btn">検索</button>
     </div>
-
-    {{!-- navメニュー --}}
+    --}} {{!-- navメニュー --}}
     <nav class="nav-menu">
       <ul class="nav-list">
-        {{#if user.isAdmin}}
-        <li>
-          <a class="btn btn-primary" href="/book/create-new-book"
-            >本アップロード</a
-          >
-        </li>
-        {{else}}
+        {{#unless user.isAdmin}}
         <li>
           <a class="btn btn-primary" href="/book/create-new-book"
             >本アップロード</a
@@ -47,7 +43,7 @@
         </li>
         <li><a href="/about">紹介</a></li>
         <li><a href="/contact">お問い合わせ</a></li>
-        {{/if}} {{#unless user}}
+        {{/unless}} {{#unless user}}
         <li><a href="/api/sign-in">ログイン</a></li>
         {{/unless}} {{#if user}}
         <li class="avatar-menu">
@@ -59,11 +55,9 @@
           <div class="dropdown-menu">
             {{#if user.isAdmin}}
             <a href="/admin/get-crud">アカウント管理</a>
-            {{!-- <a href="/admin/get-crud">本管理</a> --}} {{/if}}
+            {{/if}}
             <a href="/api/profile">プロフィール</a>
-            {{#unless user.isAdmin}}
-            <a href="/cart">カート</a>
-            {{/unless}}
+            <a href="/book/list">list</a>
             <a href="/api/logout">ログアウト</a>
           </div>
         </li>

@@ -1,0 +1,121 @@
+<div class="edit-book-container">
+  <h1>Edit Book</h1>
+  <form
+    action="/book/edit/{{book.id}}"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <div class="form-group">
+      <label for="title" class="crebook-label">Title:</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        value="{{book.title}}"
+        required
+        class="crebook-input"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="author" class="crebook-label">Author:</label>
+      <input
+        type="text"
+        id="author"
+        name="author"
+        value="{{book.author}}"
+        required
+        class="crebook-input"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="category" class="crebook-label">Category:</label>
+      <select id="category" name="categoryId" required class="crebook-input">
+        {{#each categories}}
+        <option value="{{this.id}}"  {{#if (isEqual categoryId this.id)}}selected{{/if}}>{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="form-group reading-status-group">
+      <label for="status">読書状況:</label>
+      <select id="status" name="status" required>
+        <option value="未読" {{#if (isEqual status "未読")}}selected{{/if}}>未読</option>
+  <option value="読書中" {{#if (isEqual status "読書中")}}selected{{/if}}>読書中</option>
+  <option value="読了" {{#if (isEqual status "読了")}}selected{{/if}}>読了</option>
+      </select>
+
+     <label for="owned" class="checkbox-label">
+  <input type="checkbox" id="owned" name="owned" {{#if owned}}checked{{/if}} />
+  所有
+</label>
+    </div>
+
+    <div class="form-group">
+      <label for="description" class="crebook-label">Description:</label>
+      <textarea
+        id="description"
+        name="description"
+        required
+        class="crebook-input"
+      >
+{{book.description}}</textarea
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="image" class="crebook-label">Cover Image:</label>
+      <input
+        type="file"
+        id="image"
+        name="image"
+        accept="image/*"
+        class="crebook-input"
+        onchange="previewImage(event)"
+      />
+      <!-- Vùng hiển thị hình ảnh xem trước -->
+      <div class="image-preview-container">
+    <img
+      id="image-preview"
+      alt="Preview Image"
+      class="image-preview"
+      style="display: none"
+    />
+  </div>
+  
+  <!-- Vùng hiển thị hình ảnh hiện tại -->
+  <div class="current-cover" id="current-cover-container">
+    <p>Current Cover:</p>
+    <img
+      src="data:image/png;base64,{{book.image}}"
+      alt="Current Cover"
+      id="current-cover"
+    />
+  </div>
+    </div>
+
+    <button type="submit" class="submit-button">Update</button>
+  </form>
+</div>
+<script>
+  function previewImage(event) {
+  const file = event.target.files[0];
+  const preview = document.getElementById('image-preview');
+  const currentCoverContainer = document.getElementById('current-cover-container');
+
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      preview.src = reader.result;
+      preview.style.display = 'block';
+      
+      // Ẩn vùng hiển thị ảnh hiện tại
+      if (currentCoverContainer) {
+        currentCoverContainer.style.display = 'none';
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+</script>
