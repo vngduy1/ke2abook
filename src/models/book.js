@@ -3,37 +3,50 @@ const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Book extends Model {
     static associate(models) {
-      //関係を識別する
-      Book.hasMany(models.CartItem, { foreignKey: 'bookId', as: 'cartItems' })
+      // BookとUserの多対1の関係
+      Book.belongsTo(models.User, { foreignKey: 'userId', as: 'user' })
+
+      // BookとCategoryの多対1の関係
+      Book.belongsTo(models.Category, {
+        foreignKey: 'categoryId',
+        as: 'category',
+      })
+
+      // BookとReadingStatusの1対多の関係
+      Book.hasMany(models.ReadingStatus, {
+        foreignKey: 'bookId',
+        as: 'readingStatuses',
+      })
     }
   }
   Book.init(
     {
       title: {
-        type: DataTypes.TEXT,
-        allowNull: false, // Không cho phép null
-      },
-      description: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-      image: DataTypes.BLOB('long'),
-      type: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      price: {
-        type: DataTypes.FLOAT, // Kiểu dữ liệu giá (số thực)
+      author: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
-      author: {
-        type: DataTypes.STRING, // Thêm trường tác giả
-        allowNull: true,
+      description: DataTypes.TEXT,
+      image: DataTypes.BLOB('long'),
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      categoryId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        paranoid: true,
+        timestamps: true,
       },
     },
     {
       sequelize,
       modelName: 'Book',
+      paranoid: true, // Kích hoạt soft delete
+      timestamps: true,
     },
   )
   return Book

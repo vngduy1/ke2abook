@@ -30,6 +30,7 @@ app
       extname: '.hbs',
       helpers: {
         sum: (a, b) => a + b,
+        isEqual: (a, b) => a == b,
       },
     }),
   )

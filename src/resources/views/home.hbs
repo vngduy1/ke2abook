@@ -1,22 +1,46 @@
-<div class="book-container">
-  <!-- Book 1 -->
+<main class="main">
+  <section class="welcome">
+    <h2>ようこそ{{user.firstName}} {{user.lastName}}! Ke2aBookへ</h2>
+    <p>本のコレクションを整理して、管理しやすいシステムを体験してください。</p>
+  </section>
+  <section class="features">
+    <h2>主な機能</h2>
+    <div class="features-list">
+      <div class="feature-item">
+        <div class="feature-item-image">
+          <img src="/images/b1.webp" alt="本の管理" />
+        </div>
 
-  {{#if books.length}} {{#each books}}
-  <div class="book-item">
-    <a href="/book/details/{{id}}">
-      <img
-        class="book-image"
-        src="data:image/jpeg;base64,{{image}}"
-        alt="{{title}}"
-      />
-      <div class="book-info">
-        <p>{{title}}</p>
-        <p>{{author}}</p>
-        <p>¥{{price}}</p>
+        <div class="feature-item-tt">
+          <h3>本の管理</h3>
+          <p>コレクションを追跡し、すべてを整理しましょう。</p>
+        </div>
       </div>
-    </a>
-  </div>
-  {{/each}} {{else}}
-  <p>本がありません。</p>
-  {{/if}}
-</div>
+      <div class="feature-item">
+        <div class="feature-item-image">
+          <img src="/images/b2.webp" alt="読書進捗の追跡" />
+        </div>
+        <div class="feature-item-tt">
+          <h3>読書進捗の追跡</h3>
+          <p>読んだ本や読みたい本を追跡します。</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-item-image">
+          <img src="/images/b3.webp" alt="データのエクスポート" />
+        </div>
+        <div class="feature-item-tt">
+          <h3>データのエクスポート</h3>
+          <p>本リストやレポートを簡単にエクスポートできます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{#unless user}}
+  <section class="cta">
+    <h2>今すぐ本の管理を始めましょう</h2>
+    <a href="/login" class="btn btn-primary">ログイン</a>
+    <a href="/register" class="btn btn-secondary">新規登録</a>
+  </section>
+  {{/unless}}
+</main>

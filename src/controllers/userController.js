@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 const userService = require('../services/userService.js')
 
 const handleSignUp = (req, res) => {
@@ -22,12 +23,16 @@ const handleCreateNewUser = async (req, res) => {
       // Gán chuỗi Base64 vào userData
       userData.image = imageBase64
       fs.unlinkSync(file.path)
+    } else {
+      userData.image = fs
+        .readFileSync(path.join(__dirname, '../public/images/images.jpg'))
+        .toString('base64')
     }
 
     let message = await userService.createNewUser(userData)
 
     if (message.errCode === 0) {
-      return res.render('./user/login.hbs')
+      res.redirect('/api/sign-in')
     } else {
       return res.status(400).json({ errMessage: message.errMessage })
     }
@@ -45,6 +50,8 @@ const handleLogin = async (req, res) => {
   let email = req.body.email
   let password = req.body.password
 
+  // let user = (await req.session.user) || null
+
   if (!email || !password) {
     return res.render('./user/login.hbs', {
       errCode: 1,
@@ -55,11 +62,11 @@ const handleLogin = async (req, res) => {
   const userData = await userService.handleUserLogin(email, password)
 
   if (userData.errCode === 0) {
-    const imageBase64 = Buffer.from(userData.user.image).toString('binary')
+    const imageBase64 = userData.user.image
+      ? Buffer.from(userData.user.image).toString('binary')
+      : null
     req.session.user = {
-      id: userData.user.id,
-      email: userData.user.email,
-      isAdmin: userData.user.isAdmin,
+      ...userData.user,
       image: imageBase64,
     }
     return res.redirect('/')
@@ -109,11 +116,11 @@ const getProfilePage = async (req, res) => {
     // })
 
     if (userData.errCode === 0) {
-      if (userData.user.image) {
+      if (userData?.user?.image) {
         const imageBase64 = Buffer.from(userData.user.image).toString('binary')
         userData.user.image = imageBase64
-        return res.render('./user/profile.hbs', { userData, user })
       }
+      return res.render('./user/profile.hbs', { userData, user })
     } else {
       return res.redirect('/api/sign-in', {
         errCode: userData.errCode,
@@ -144,7 +151,7 @@ const handleEditProfile = async (req, res) => {
 
     let message = await userService.handleEditProfile(userData, id)
     if (message.errCode === 0) {
-      return res.redirect('/api/profile', { user })
+      return res.render('./user/profile.hbs', { user })
     }
   } catch (error) {
     console.log(error)

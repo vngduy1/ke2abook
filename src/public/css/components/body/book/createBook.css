@@ -1,0 +1,140 @@
+@charset "UTF-8";
+/* Styles chung cho cả Create Book và Edit Book */
+.create-book-container,
+.edit-book-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+  .create-book-container h1,
+  .edit-book-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333; }
+  .create-book-container .form-group,
+  .edit-book-container .form-group {
+    margin-bottom: 20px; }
+    .create-book-container .form-group label,
+    .edit-book-container .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #555; }
+    .create-book-container .form-group input,
+    .create-book-container .form-group select,
+    .create-book-container .form-group textarea,
+    .edit-book-container .form-group input,
+    .edit-book-container .form-group select,
+    .edit-book-container .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      box-sizing: border-box; }
+      .create-book-container .form-group input:focus,
+      .create-book-container .form-group select:focus,
+      .create-book-container .form-group textarea:focus,
+      .edit-book-container .form-group input:focus,
+      .edit-book-container .form-group select:focus,
+      .edit-book-container .form-group textarea:focus {
+        border-color: #007bff;
+        outline: none; }
+    .create-book-container .form-group textarea,
+    .edit-book-container .form-group textarea {
+      resize: vertical;
+      height: 120px; }
+    .create-book-container .form-group .current-cover,
+    .create-book-container .form-group .image-preview,
+    .edit-book-container .form-group .current-cover,
+    .edit-book-container .form-group .image-preview {
+      display: block;
+      margin-top: 15px;
+      max-width: 100%;
+      height: 400px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+    .create-book-container .form-group .current-cover,
+    .edit-book-container .form-group .current-cover {
+      border: 1px solid #ddd; }
+  .create-book-container .reading-status-group,
+  .edit-book-container .reading-status-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* Khoảng cách giữa select và checkbox */
+    white-space: nowrap; }
+    .create-book-container .reading-status-group label,
+    .edit-book-container .reading-status-group label {
+      font-size: 1rem;
+      padding-top: 10px; }
+    .create-book-container .reading-status-group select,
+    .edit-book-container .reading-status-group select {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box; }
+    .create-book-container .reading-status-group .checkbox-label,
+    .edit-book-container .reading-status-group .checkbox-label {
+      display: flex;
+      align-items: center;
+      padding-top: 10px; }
+      .create-book-container .reading-status-group .checkbox-label input[type='checkbox'],
+      .edit-book-container .reading-status-group .checkbox-label input[type='checkbox'] {
+        margin-right: 5px; }
+  .create-book-container .submit-button,
+  .edit-book-container .submit-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; }
+    .create-book-container .submit-button:hover,
+    .edit-book-container .submit-button:hover {
+      background-color: #0056b3; }
+
+/* Riêng cho Edit Book */
+.edit-book-container .submit-button {
+  background-color: #28a745; }
+  .edit-book-container .submit-button:hover {
+    background-color: #218838; }
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .book-form-container {
+    padding: 15px; }
+    .book-form-container h1 {
+      font-size: 1.6rem; }
+    .book-form-container .form-group label {
+      font-size: 0.95rem; }
+    .book-form-container .form-group input,
+    .book-form-container .form-group select,
+    .book-form-container .form-group textarea {
+      font-size: 0.95rem; }
+    .book-form-container .submit-button {
+      font-size: 0.95rem;
+      padding: 12px; } }
+
+@media (max-width: 480px) {
+  .book-form-container h1 {
+    font-size: 1.4rem; }
+  .book-form-container .form-group label {
+    font-size: 0.85rem; }
+  .book-form-container .form-group input,
+  .book-form-container .form-group select,
+  .book-form-container .form-group textarea {
+    font-size: 0.85rem;
+    padding: 8px; }
+  .book-form-container .submit-button {
+    font-size: 0.85rem;
+    padding: 10px; } }

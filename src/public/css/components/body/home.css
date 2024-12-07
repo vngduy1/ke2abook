@@ -1,71 +1,136 @@
-.book-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: left;
-  padding: 16px; }
+/* Main container styling */
+.main {
+  text-align: center;
+  background-color: #f9f9f9; }
 
-.book-item {
-  width: 240px;
+/* Welcome section */
+.welcome {
+  margin: 40px 0;
+  padding: 20px;
+  background-color: #f0f8ff;
+  /* Light blue background */
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+
+.welcome h2 {
+  font-size: 2rem;
+  color: #007bff;
+  /* Blue color */
+  margin-bottom: 10px; }
+
+.welcome p {
+  font-size: 1.1rem;
+  color: #555; }
+
+/* Section Features */
+.features {
+  margin: 40px 0; }
+
+.features h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333; }
+
+/* Features List */
+.features-list {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  border: 1px solid #ddd;
+  gap: 20px;
+  justify-content: center; }
+
+.feature-item {
+  display: flex;
+  gap: 40px;
+  background: white;
   border-radius: 8px;
-  overflow: hidden;
-  box-sizing: border-box;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease; }
-  .book-item a {
-    text-decoration: none; }
-  .book-item .book-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block; }
-  .book-item .book-info {
-    padding: 12px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-    padding: 10px; }
-    .book-item .book-info .book-title {
-      font-size: 14px;
-      font-weight: bold;
-      line-height: 1.5;
-      height: 3em;
-      margin: 8px 0;
-      color: #333;
-      text-align: center;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-align: center; }
-    .book-item .book-info .book-author {
-      font-size: 12px;
-      color: #666;
-      margin-bottom: 8px;
-      text-align: center; }
-    .book-item .book-info .book-price {
-      font-size: 14px;
-      font-weight: bold;
-      color: #d32f2f;
-      text-align: center; }
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; }
 
-.book-item:hover {
-  transform: translateY(-10px); }
+.feature-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); }
 
+.feature-item img {
+  max-width: 240px;
+  height: auto;
+  margin-bottom: 15px; }
+
+.feature-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #222; }
+
+.feature-item p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 5px 0; }
+
+/* Section CTA (Call to Action) */
+.cta {
+  margin: 40px 0;
+  padding: 20px;
+  background-color: #f0f8ff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+
+.cta h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333; }
+
+.cta .btn {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease; }
+
+.btn-primary {
+  background-color: #007bff;
+  color: white; }
+
+.btn-primary:hover {
+  background-color: #0056b3; }
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white; }
+
+.btn-secondary:hover {
+  background-color: #5a6268; }
+
+/* Media Queries for Responsive Design */
+/* Tablet (768px to 1024px) */
+@media (max-width: 1024px) {
+  .features h2,
+  .cta h2 {
+    font-size: 1.6rem; }
+  .feature-item h3 {
+    font-size: 1rem; }
+  .feature-item p {
+    font-size: 0.85rem; } }
+
+/* Mobile (Below 768px) */
 @media (max-width: 768px) {
-  .book-container {
-    gap: 20px; } }
-
-@media (max-width: 480px) {
-  .book-item {
-    width: 100%;
-    margin: 15px; }
-    .book-item .book-image {
-      height: 360px; } }
+  .features-list {
+    gap: 15px;
+    flex-direction: column; }
+  .feature-item {
+    gap: 15px; }
+  .features h2,
+  .cta h2 {
+    font-size: 1.4rem; }
+  .feature-item h3 {
+    font-size: 0.9rem; }
+  .feature-item p {
+    font-size: 0.8rem; }
+  .cta {
+    padding: 15px; }
+  .btn {
+    font-size: 0.9rem;
+    padding: 8px 15px; } }

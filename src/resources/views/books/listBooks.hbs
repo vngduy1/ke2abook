@@ -1,0 +1,56 @@
+<div class="list-books-container">
+  <h1 class="list-books-title">List of Books</h1>
+  <div class="search-bar">
+    <form action="/book/search" method="GET">
+      <input type="text" name="keyword" placeholder="Search books..." />
+      <button type="submit">Search</button>
+    </form>
+  </div>
+  {{#if errMessage}}
+  <div class=""><p style="color: red;">{{errMessage}} </p></div>
+  {{/if}}
+  <div class="">
+    <a href="/book/trash-book">Deleted books</a>
+  </div>
+  {{#if books.length}}
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">image</th>
+        <th scope="col">title</th>
+        <th scope="col">author</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each books}}
+        <tr>
+          <td class="td-image">
+      <a href="/book/book-details/{{this.id}}" class="details-button">
+            <img
+            class="list-image"
+              src="data:image/png;base64,{{this.image}}"
+              alt="{{this.title}}"
+            />
+          </td>
+      </a>
+          <td class="td-title">
+      <a href="/book/book-details/{{this.id}}" class="details-button">
+            {{this.title}}</a> </td>
+          <td class="td-author">{{this.author}}</td>
+          <td class="td-button">
+            <form action="/book/edit/{{this.id}}" method="GET">
+              <button type="submit" class="list-edit-button">Edit</button>
+            </form>
+            <form action="/book/delete/{{this.id}}" method="POST">
+              <button type="submit" class="list-delete-button">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+  <p>{{message}}</p>
+{{/if}}
+</div>

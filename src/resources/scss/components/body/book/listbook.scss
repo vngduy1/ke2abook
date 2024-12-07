@@ -1,0 +1,71 @@
+.list-books-container {
+  margin: auto;
+  max-width: 1000px;
+  padding-top: 40px;
+
+  .list-books-title {
+    text-align: center;
+    margin: 20px auto;
+    font-size: 50px;
+  }
+
+  .search-bar {
+    form {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      gap: 10px;
+    }
+  }
+
+  .table {
+    white-space: nowrap;
+
+    .td-image {
+      width: 54px;
+      height: auto;
+    }
+
+    .list-image {
+      width: 100%;
+    }
+    .td-title,
+    .td-author {
+      max-width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    a {
+      text-decoration: none;
+    }
+
+    .td-button {
+      width: 100px;
+      height: auto;
+    }
+
+    .list-edit-button {
+      width: 90px;
+      background-color: #d3d354;
+    }
+
+    .list-restore-button {
+      width: 90px;
+    }
+
+    .list-delete-button {
+      width: 90px;
+      background-color: red;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+}
+
+@media (min-width: 769px) {
+}

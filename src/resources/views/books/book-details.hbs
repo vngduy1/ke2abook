@@ -1,0 +1,16 @@
+<div class="book-details-container">
+  <div class="book-details-image">
+    <img src="data:image/jpeg;base64,{{book.image}}" alt="{{book.title}}" />
+  </div>
+  <div class="book-details-info">
+    <h1 class="book-details-title">{{book.title}}</h1>
+    <p class="book-details-author">{{book.author}}</p>
+    <p class="book-details-description">{{book.description}}</p>
+    <p class="book-details-category">{{book.category}}</p>
+    <p class="book-details-status">{{status}}</p>
+    <p class="book-details-owned">
+      {{#if ( isEqual owned 1)}} 所有 {{else}} 未所有 {{/if}}
+    </p>
+    <a href="/book/edit/{{book.id}}" class="edit-button">Edit</a>
+  </div>
+</div>

@@ -13,7 +13,6 @@
   margin: 0 auto; }
 
 .logo {
-  flex: 1;
   text-align: center; }
 
 .logo-img {
@@ -203,8 +202,9 @@
 .footer-container {
   background-color: #f8f9fa;
   /* 背景色を薄いグレーに設定 */
-  padding: 20px;
+  padding: 20px 0;
   display: flex;
+  gap: 20px;
   justify-content: space-around;
   /* 各セクションを均等に配置 */
   text-align: left;
@@ -250,9 +250,7 @@
 @media (max-width: 480px) {
   .footer-container {
     flex-direction: column;
-    /* セクションを縦に並べる */
-    padding: 10px;
-    /* パディングを減らす */ }
+    /* セクションを縦に並べる */ }
   .footer-section {
     margin: 10px 0;
     /* セクション間の余白を広げる */
@@ -279,9 +277,7 @@
 @media (max-width: 768px) and (min-width: 481px) {
   .footer-container {
     display: flex;
-    flex-wrap: wrap;
-    padding: 15px;
-    /* パディングを調整 */ }
+    flex-wrap: wrap; }
   .footer-section {
     min-width: 300px;
     margin: 0 10px;
@@ -310,9 +306,7 @@
 @media (max-width: 1200px) and (min-width: 769px) {
   .footer-container {
     flex-direction: row;
-    /* セクションを横に並べる */
-    padding: 20px;
-    /* デフォルトのパディング */ }
+    /* セクションを横に並べる */ }
   .footer-section {
     margin: 0 15px;
     /* セクション間の余白 */
@@ -333,77 +327,142 @@
     width: 40px;
     /* アイコンのサイズを標準に戻す */ } }
 
-.book-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: left;
-  padding: 16px; }
+/* Main container styling */
+.main {
+  text-align: center;
+  background-color: #f9f9f9; }
 
-.book-item {
-  width: 240px;
+/* Welcome section */
+.welcome {
+  margin: 40px 0;
+  padding: 20px;
+  background-color: #f0f8ff;
+  /* Light blue background */
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+
+.welcome h2 {
+  font-size: 2rem;
+  color: #007bff;
+  /* Blue color */
+  margin-bottom: 10px; }
+
+.welcome p {
+  font-size: 1.1rem;
+  color: #555; }
+
+/* Section Features */
+.features {
+  margin: 40px 0; }
+
+.features h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333; }
+
+/* Features List */
+.features-list {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  border: 1px solid #ddd;
+  gap: 20px;
+  justify-content: center; }
+
+.feature-item {
+  display: flex;
+  gap: 40px;
+  background: white;
   border-radius: 8px;
-  overflow: hidden;
-  box-sizing: border-box;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease; }
-  .book-item a {
-    text-decoration: none; }
-  .book-item .book-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block; }
-  .book-item .book-info {
-    padding: 12px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-    padding: 10px; }
-    .book-item .book-info .book-title {
-      font-size: 14px;
-      font-weight: bold;
-      line-height: 1.5;
-      height: 3em;
-      margin: 8px 0;
-      color: #333;
-      text-align: center;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-align: center; }
-    .book-item .book-info .book-author {
-      font-size: 12px;
-      color: #666;
-      margin-bottom: 8px;
-      text-align: center; }
-    .book-item .book-info .book-price {
-      font-size: 14px;
-      font-weight: bold;
-      color: #d32f2f;
-      text-align: center; }
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; }
 
-.book-item:hover {
-  transform: translateY(-10px); }
+.feature-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); }
 
+.feature-item img {
+  max-width: 240px;
+  height: auto;
+  margin-bottom: 15px; }
+
+.feature-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #222; }
+
+.feature-item p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 5px 0; }
+
+/* Section CTA (Call to Action) */
+.cta {
+  margin: 40px 0;
+  padding: 20px;
+  background-color: #f0f8ff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+
+.cta h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333; }
+
+.cta .btn {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease; }
+
+.btn-primary {
+  background-color: #007bff;
+  color: white; }
+
+.btn-primary:hover {
+  background-color: #0056b3; }
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white; }
+
+.btn-secondary:hover {
+  background-color: #5a6268; }
+
+/* Media Queries for Responsive Design */
+/* Tablet (768px to 1024px) */
+@media (max-width: 1024px) {
+  .features h2,
+  .cta h2 {
+    font-size: 1.6rem; }
+  .feature-item h3 {
+    font-size: 1rem; }
+  .feature-item p {
+    font-size: 0.85rem; } }
+
+/* Mobile (Below 768px) */
 @media (max-width: 768px) {
-  .book-container {
-    gap: 20px; } }
-
-@media (max-width: 480px) {
-  .book-item {
-    width: 100%;
-    margin: 15px; }
-    .book-item .book-image {
-      height: 360px; } }
+  .features-list {
+    gap: 15px;
+    flex-direction: column; }
+  .feature-item {
+    gap: 15px; }
+  .features h2,
+  .cta h2 {
+    font-size: 1.4rem; }
+  .feature-item h3 {
+    font-size: 0.9rem; }
+  .feature-item p {
+    font-size: 0.8rem; }
+  .cta {
+    padding: 15px; }
+  .btn {
+    font-size: 0.9rem;
+    padding: 8px 15px; } }
 
 /* Resetting some default styles */
 body,
@@ -655,83 +714,185 @@ button:hover {
   cursor: pointer;
   margin-bottom: 20px; }
 
-.crebook-container {
-  width: 90%;
-  max-width: 800px;
-  margin: 60px auto 0;
+/* Styles chung cho cả Create Book và Edit Book */
+.create-book-container,
+.edit-book-container {
+  max-width: 600px;
+  margin: 0 auto;
   padding: 20px;
-  background-color: #fff;
+  background: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+  .create-book-container h1,
+  .edit-book-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333; }
+  .create-book-container .form-group,
+  .edit-book-container .form-group {
+    margin-bottom: 20px; }
+    .create-book-container .form-group label,
+    .edit-book-container .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #555; }
+    .create-book-container .form-group input,
+    .create-book-container .form-group select,
+    .create-book-container .form-group textarea,
+    .edit-book-container .form-group input,
+    .edit-book-container .form-group select,
+    .edit-book-container .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      box-sizing: border-box; }
+      .create-book-container .form-group input:focus,
+      .create-book-container .form-group select:focus,
+      .create-book-container .form-group textarea:focus,
+      .edit-book-container .form-group input:focus,
+      .edit-book-container .form-group select:focus,
+      .edit-book-container .form-group textarea:focus {
+        border-color: #007bff;
+        outline: none; }
+    .create-book-container .form-group textarea,
+    .edit-book-container .form-group textarea {
+      resize: vertical;
+      height: 120px; }
+    .create-book-container .form-group .current-cover,
+    .create-book-container .form-group .image-preview,
+    .edit-book-container .form-group .current-cover,
+    .edit-book-container .form-group .image-preview {
+      display: block;
+      margin-top: 15px;
+      max-width: 100%;
+      height: 400px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+    .create-book-container .form-group .current-cover,
+    .edit-book-container .form-group .current-cover {
+      border: 1px solid #ddd; }
+  .create-book-container .reading-status-group,
+  .edit-book-container .reading-status-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* Khoảng cách giữa select và checkbox */
+    white-space: nowrap; }
+    .create-book-container .reading-status-group label,
+    .edit-book-container .reading-status-group label {
+      font-size: 1rem;
+      padding-top: 10px; }
+    .create-book-container .reading-status-group select,
+    .edit-book-container .reading-status-group select {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box; }
+    .create-book-container .reading-status-group .checkbox-label,
+    .edit-book-container .reading-status-group .checkbox-label {
+      display: flex;
+      align-items: center;
+      padding-top: 10px; }
+      .create-book-container .reading-status-group .checkbox-label input[type='checkbox'],
+      .edit-book-container .reading-status-group .checkbox-label input[type='checkbox'] {
+        margin-right: 5px; }
+  .create-book-container .submit-button,
+  .edit-book-container .submit-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; }
+    .create-book-container .submit-button:hover,
+    .edit-book-container .submit-button:hover {
+      background-color: #0056b3; }
 
-/* Header */
-.crebook-header {
-  text-align: center;
-  padding: 20px 0;
-  background-color: #f1f1f1; }
+/* Riêng cho Edit Book */
+.edit-book-container .submit-button {
+  background-color: #28a745; }
+  .edit-book-container .submit-button:hover {
+    background-color: #218838; }
 
-.crebook-title {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333; }
+/* Media Queries */
+@media (max-width: 768px) {
+  .book-form-container {
+    padding: 15px; }
+    .book-form-container h1 {
+      font-size: 1.6rem; }
+    .book-form-container .form-group label {
+      font-size: 0.95rem; }
+    .book-form-container .form-group input,
+    .book-form-container .form-group select,
+    .book-form-container .form-group textarea {
+      font-size: 0.95rem; }
+    .book-form-container .submit-button {
+      font-size: 0.95rem;
+      padding: 12px; } }
 
-/* Form and Input Styles */
-.crebook-form-group {
-  margin-bottom: 15px; }
+@media (max-width: 480px) {
+  .book-form-container h1 {
+    font-size: 1.4rem; }
+  .book-form-container .form-group label {
+    font-size: 0.85rem; }
+  .book-form-container .form-group input,
+  .book-form-container .form-group select,
+  .book-form-container .form-group textarea {
+    font-size: 0.85rem;
+    padding: 8px; }
+  .book-form-container .submit-button {
+    font-size: 0.85rem;
+    padding: 10px; } }
 
-.crebook-label {
-  display: block;
-  font-size: 16px;
-  margin-bottom: 8px; }
-
-.crebook-input,
-.crebook-textarea {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px; }
-
-.crebook-textarea {
-  resize: vertical; }
-
-/* Image Preview */
-.crebook-image-preview {
-  margin-top: 10px;
-  max-width: 100%;
-  display: flex;
-  justify-content: center; }
-
-.crebook-preview-img {
-  width: 300px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 8px;
-  display: none; }
-
-/* Submit Button */
-.crebook-btn {
-  width: 100%;
-  padding: 12px;
-  font-size: 18px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer; }
-
-.crebook-btn:hover {
-  background-color: #0056b3; }
-
-/* Responsive Design */
-@media (min-width: 768px) {
-  .crebook-container {
-    padding: 40px; } }
-
-@media (min-width: 1024px) {
-  .crebook-container {
-    padding: 50px; } }
+.list-books-container {
+  margin: auto;
+  max-width: 1000px;
+  padding-top: 40px; }
+  .list-books-container .list-books-title {
+    text-align: center;
+    margin: 20px auto;
+    font-size: 50px; }
+  .list-books-container .search-bar form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px; }
+  .list-books-container .table {
+    white-space: nowrap; }
+    .list-books-container .table .td-image {
+      width: 54px;
+      height: auto; }
+    .list-books-container .table .list-image {
+      width: 100%; }
+    .list-books-container .table .td-title,
+    .list-books-container .table .td-author {
+      max-width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+    .list-books-container .table a {
+      text-decoration: none; }
+    .list-books-container .table .td-button {
+      width: 100px;
+      height: auto; }
+    .list-books-container .table .list-edit-button {
+      width: 90px;
+      background-color: #d3d354; }
+    .list-books-container .table .list-restore-button {
+      width: 90px; }
+    .list-books-container .table .list-delete-button {
+      width: 90px;
+      background-color: red; }
 
 /* ページ全体にデフォルトのマージンやパディングがないことを確認してください。 */
 body,
