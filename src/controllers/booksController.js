@@ -45,24 +45,40 @@ const booksController = {
   getAllBooksByUserId: async (req, res) => {
     const sessionUser = await req.session.user
     const userId = await req.session.user.id
+    const sortOption = req.query.sortOption || 'title_ASC'
+    const [sortField, sortOrder] = sortOption.split('_')
 
     try {
-      const books = await booksService.getBooksByUserId(userId)
+      const books = await booksService.getBooksByUserId(
+        userId,
+        sortField,
+        sortOrder,
+      )
       const { errCode, data } = books
       if (errCode === 0) {
         if (data.length === 0) {
           res.render('./books/listBooks.hbs', {
             books: data,
             user: sessionUser,
-            message: 'Thung rac trong',
+            sortField,
+            sortOrder,
+            message: 'List book trong',
           })
         }
-        res.render('./books/listBooks.hbs', { books: data, user: sessionUser })
+        res.render('./books/listBooks.hbs', {
+          books: data,
+          user: sessionUser,
+          sortField,
+          sortOrder,
+        })
       } else {
         const errMessage = books.errMessage
           ? books.errMessage
           : 'Cannot list book errMessage'
-        res.render('./books/errorBook.hbs', { errMessage, user: sessionUser })
+        res.render('./books/errorBook.hbs', {
+          errMessage,
+          user: sessionUser,
+        })
       }
     } catch (error) {
       console.error('Error fetching books:', error)

@@ -31,6 +31,8 @@ app
       helpers: {
         sum: (a, b) => a + b,
         isEqual: (a, b) => a == b,
+        eq: (a, b) => a === b,
+        and: (a, b) => a && b,
       },
     }),
   )

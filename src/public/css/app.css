@@ -1,8 +1,8 @@
 @charset "UTF-8";
 .bookstore-header {
-  background-color: #fff;
+  background-color: #fef0ef;
   border-bottom: 2px solid #ddd;
-  padding: 10px 20px;
+  padding: 34px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
 
 .header-container {
@@ -16,7 +16,7 @@
   text-align: center; }
 
 .logo-img {
-  max-height: 50px; }
+  max-height: 85px; }
 
 /* 検索バーのスタイル */
 .search-bar {
@@ -61,7 +61,8 @@
 .nav-list {
   list-style: none;
   display: flex;
-  gap: 20px;
+  font-size: 18px;
+  gap: 36px;
   margin: 0;
   padding: 0;
   align-items: center; }
@@ -82,8 +83,6 @@
     flex-direction: column;
     align-items: center;
     position: relative; }
-  .logo-img {
-    max-height: 70px; }
   .search-bar,
   .nav-menu {
     display: none;
@@ -97,15 +96,15 @@
   display: inline-block; }
 
 .avatar-img {
-  width: 40px;
-  height: 40px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   cursor: pointer; }
 
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 50px;
+  top: 60px;
   right: 0;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -447,10 +446,10 @@
 /* Mobile (Below 768px) */
 @media (max-width: 768px) {
   .features-list {
+    gap: 15px; }
+  .feature-item {
     gap: 15px;
     flex-direction: column; }
-  .feature-item {
-    gap: 15px; }
   .features h2,
   .cta h2 {
     font-size: 1.4rem; }
@@ -867,6 +866,16 @@ button:hover {
     align-items: center;
     width: 100%;
     gap: 10px; }
+  .list-books-container .sort-bar form {
+    padding: 24px 0;
+    white-space: nowrap; }
+  .list-books-container .sort-bar label {
+    display: flex;
+    align-items: center;
+    gap: 5px; }
+  .list-books-container .sort-list {
+    display: flex;
+    gap: 30px; }
   .list-books-container .table {
     white-space: nowrap; }
     .list-books-container .table .td-image {
@@ -903,26 +912,18 @@ html {
   box-sizing: border-box; }
 
 .app-body {
-  min-height: 100vh; }
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: auto; }
 
 @media (max-width: 480px) {
   .app {
-    max-width: 100%;
-    padding: 0 5px; } }
+    max-width: 100%; } }
 
 @media (max-width: 768px) and (min-width: 481px) {
   .app {
-    max-width: 100%;
-    padding: 0 10px; } }
+    max-width: 100%; } }
 
 @media (max-width: 1200px) and (min-width: 769px) {
   .app {
-    max-width: 100%;
-    padding: 0 15px; } }
-
-@media (min-width: 1201px) {
-  .app {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
-    width: 100%; } }
+    max-width: 100%; } }

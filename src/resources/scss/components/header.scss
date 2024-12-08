@@ -1,7 +1,7 @@
 .bookstore-header {
-  background-color: $--white;
+  background-color: $--main;
   border-bottom: 2px solid #ddd;
-  padding: 10px 20px;
+  padding: 34px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -18,7 +18,7 @@
 }
 
 .logo-img {
-  max-height: 50px;
+  max-height: 85px;
 }
 
 /* 検索バーのスタイル */
@@ -71,7 +71,8 @@
 .nav-list {
   list-style: none;
   display: flex;
-  gap: 20px;
+  font-size: 18px;
+  gap: 36px;
   margin: 0;
   padding: 0;
   align-items: center;
@@ -99,10 +100,6 @@
     position: relative;
   }
 
-  .logo-img {
-    max-height: 70px;
-  }
-
   .search-bar,
   .nav-menu {
     display: none; /* ロゴだけを表示 */
@@ -119,8 +116,8 @@
 }
 
 .avatar-img {
-  width: 40px;
-  height: 40px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
 
   cursor: pointer;
@@ -129,9 +126,9 @@
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 50px;
+  top: 60px;
   right: 0;
-  background-color: #fff;
+  background-color: $--white;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
