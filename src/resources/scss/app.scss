@@ -19,13 +19,14 @@ html {
 
 .app-body {
   min-height: 100vh;
+  max-width: 1200px;
+  margin: auto;
 }
 
 //mobileディスプレイ
 @media (max-width: 480px) {
   .app {
     max-width: 100%;
-    padding: 0 5px;
   }
 }
 
@@ -33,7 +34,6 @@ html {
 @media (max-width: 768px) and (min-width: 481px) {
   .app {
     max-width: 100%;
-    padding: 0 10px;
   }
 }
 
@@ -41,15 +41,5 @@ html {
 @media (max-width: 1200px) and (min-width: 769px) {
   .app {
     max-width: 100%;
-    padding: 0 15px;
-  }
-}
-
-@media (min-width: 1201px) {
-  .app {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
-    width: 100%;
   }
 }

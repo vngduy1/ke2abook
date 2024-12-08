@@ -12,6 +12,33 @@
   <div class="">
     <a href="/book/trash-book">Deleted books</a>
   </div>
+  <div class="sort-bar">
+    <form action="/book/list" method="GET">
+      <div class="sort-list">
+        <label for="sort-title-asc">
+          <input type="radio" name="sortOption" value="title_ASC"
+          {{#if (and (eq sortField 'title') (eq sortOrder 'ASC'))}} checked {{/if}} />
+          名前の昇順
+        </label>
+        <label for="sort-title-desc">
+          <input type="radio" name="sortOption" value="title_DESC"
+          {{#if (and (eq sortField 'title') (eq sortOrder 'DESC'))}} checked {{/if}} />
+        名前の降順 
+        </label>
+        <label for="sort-createdAt-asc">
+          <input type="radio" name="sortOption" value="createdAt_ASC"
+          {{#if (and (eq sortField 'createdAt') (eq sortOrder 'ASC'))}} checked {{/if}} />
+        時間の昇順
+        </label>
+        <label for="sort-createdAt-desc">
+          <input type="radio" name="sortOption" value="createdAt_DESC"
+          {{#if (and (eq sortField 'createdAt') (eq sortOrder 'DESC'))}} checked {{/if}} />
+        時間の降順
+        </label>
+      </div>
+      <div><button type="submit">並び替え</button></div>
+    </form>
+  </div>
   {{#if books.length}}
   <table class="table table-bordered">
     <thead>
@@ -30,13 +57,13 @@
             <img
             class="list-image"
               src="data:image/png;base64,{{this.image}}"
-              alt="{{this.title}}"
-            />
-          </td>
+              alt="{{this.title}}" />
       </a>
+          </td>
           <td class="td-title">
       <a href="/book/book-details/{{this.id}}" class="details-button">
-            {{this.title}}</a> </td>
+            {{this.title}}</a> 
+            </td>
           <td class="td-author">{{this.author}}</td>
           <td class="td-button">
             <form action="/book/edit/{{this.id}}" method="GET">

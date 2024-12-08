@@ -55,10 +55,19 @@ const booksService = {
   },
 
   // Lấy danh sách sách
-  getBooksByUserId: async (userId) => {
+  getBooksByUserId: async (userId, sortField = 'title', sortOrder = 'ASC') => {
     try {
+      const validSortFields = ['title', 'createdAt']
+      if (!validSortFields.includes(sortField)) {
+        sortField = 'title'
+      }
+
+      if (!['ASC', 'DESC'].includes(sortOrder.toUpperCase())) {
+        sortOrder = 'ASC'
+      }
       const books = await Book.findAll({
         where: { userId, deletedAt: null },
+        order: [[sortField, sortOrder.toUpperCase()]],
         raw: true,
       })
       if (books && books.length > 0) {

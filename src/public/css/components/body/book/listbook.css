@@ -11,6 +11,16 @@
     align-items: center;
     width: 100%;
     gap: 10px; }
+  .list-books-container .sort-bar form {
+    padding: 24px 0;
+    white-space: nowrap; }
+  .list-books-container .sort-bar label {
+    display: flex;
+    align-items: center;
+    gap: 5px; }
+  .list-books-container .sort-list {
+    display: flex;
+    gap: 30px; }
   .list-books-container .table {
     white-space: nowrap; }
     .list-books-container .table .td-image {
