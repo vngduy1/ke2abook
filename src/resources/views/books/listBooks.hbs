@@ -1,83 +1,136 @@
 <div class="list-books-container">
-  <h1 class="list-books-title">List of Books</h1>
-  <div class="search-bar">
-    <form action="/book/search" method="GET">
-      <input type="text" name="keyword" placeholder="Search books..." />
-      <button type="submit">Search</button>
-    </form>
+  <div class="list-books-left">
+    
+    <div class="list-books-btn">
+      <a class="btn btn-primary" href="/book/create-new-book">制作</a>
+      <a class="btn btn-secondary" href="/book/trash-book">ゴミ箱</a>
+    </div>
+    <div class="search-bar">
+      <form action="/book/search" method="GET">
+        <div class="form-group">
+          <label for="keyword">検索:</label>
+          <input type="text" id="keyword" name="keyword" placeholder="検索..." value="{{query.keyword}}"/>
+          </div>
+        <div class="form-group">
+          <label for="categoryId" >Category:</label>
+          <select id="categoryId" name="categoryId" required >
+            <option value="all" {{#ifEquals query.categoryId "all"}} selected {{/ifEquals}} >All Categories</option>
+            {{#each categories}}
+            <option  value=" {{this.id}}"
+            {{#ifEquals ../query.categoryId this.id}} selected {{/ifEquals}}
+            >{{this.name}}</option>
+            {{/each}}
+          </select>
+        </div> 
+        <div class="form-group">
+          <label for="status">読書状況:</label>
+          <select id="status" name="status" >
+            <option value="all" {{#ifEquals query.status "all"}}selected{{/ifEquals}}>all</option>
+            <option value="未読" {{#ifEquals query.status "未読"}}selected{{/ifEquals}}>未読</option>
+            <!-- Chưa đọc -->
+            <option value="読書中" {{#ifEquals query.status "読書中"}}selected{{/ifEquals}}>読書中</option>
+            <!-- Đang đọc -->
+            <option value="読了"{{#ifEquals query.status "読了"}}selected{{/ifEquals}}>読了</option>
+            <!-- Đã đọc -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="owned">owned:</label>
+          <select id="owned" name="owned" >
+            <option value="all" {{#ifEquals query.owned "all"}}selected{{/ifEquals}}>all</option>
+            <option value="0" {{#ifEquals query.owned "0"}}selected{{/ifEquals}}>未所有</option>
+            <option value="1" {{#ifEquals query.owned "1"}}selected{{/ifEquals}}>所有</option>
+          </select>
+        </div>
+        <div class="form-group"><button type="submit">Search</button></div>
+      </form>
+    </div>
+    
+    <div class="sort-bar">
+      <form action="/book/list" method="GET">
+        <div class="sort-list">
+          <label for="sort-title-asc">
+            <input type="radio" name="sortOption" value="title_ASC"
+            {{#if (and (eq sortField 'title') (eq sortOrder 'ASC'))}} checked {{/if}} />
+            名前の昇順
+          </label>
+          <label for="sort-title-desc">
+            <input type="radio" name="sortOption" value="title_DESC"
+            {{#if (and (eq sortField 'title') (eq sortOrder 'DESC'))}} checked {{/if}} />
+          名前の降順 
+          </label>
+          <label for="sort-createdAt-asc">
+            <input type="radio" name="sortOption" value="createdAt_ASC"
+            {{#if (and (eq sortField 'createdAt') (eq sortOrder 'ASC'))}} checked {{/if}} />
+          時間の昇順
+          </label>
+          <label for="sort-createdAt-desc">
+            <input type="radio" name="sortOption" value="createdAt_DESC"
+            {{#if (and (eq sortField 'createdAt') (eq sortOrder 'DESC'))}} checked {{/if}} />
+          時間の降順
+          </label>
+        </div>
+        <div class="form-group"><button type="submit">並び替え</button></div>
+      </form>
+    </div>
   </div>
-  {{#if errMessage}}
-  <div class=""><p style="color: red;">{{errMessage}} </p></div>
-  {{/if}}
-  <div class="">
-    <a href="/book/trash-book">Deleted books</a>
-  </div>
-  <div class="sort-bar">
-    <form action="/book/list" method="GET">
-      <div class="sort-list">
-        <label for="sort-title-asc">
-          <input type="radio" name="sortOption" value="title_ASC"
-          {{#if (and (eq sortField 'title') (eq sortOrder 'ASC'))}} checked {{/if}} />
-          名前の昇順
-        </label>
-        <label for="sort-title-desc">
-          <input type="radio" name="sortOption" value="title_DESC"
-          {{#if (and (eq sortField 'title') (eq sortOrder 'DESC'))}} checked {{/if}} />
-        名前の降順 
-        </label>
-        <label for="sort-createdAt-asc">
-          <input type="radio" name="sortOption" value="createdAt_ASC"
-          {{#if (and (eq sortField 'createdAt') (eq sortOrder 'ASC'))}} checked {{/if}} />
-        時間の昇順
-        </label>
-        <label for="sort-createdAt-desc">
-          <input type="radio" name="sortOption" value="createdAt_DESC"
-          {{#if (and (eq sortField 'createdAt') (eq sortOrder 'DESC'))}} checked {{/if}} />
-        時間の降順
-        </label>
-      </div>
-      <div><button type="submit">並び替え</button></div>
-    </form>
-  </div>
-  {{#if books.length}}
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">image</th>
-        <th scope="col">title</th>
-        <th scope="col">author</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each books}}
+  <div class="list-books-right">
+    <h1 class="list-books-title">List of Books</h1>
+    
+    {{#if errMessage}}
+    <div class="list-book-message"><h2>{{errMessage}} </h2></div>
+    {{/if}}
+    {{#if books.length}}
+    <table class="table table-bordered">
+      <thead>
         <tr>
-          <td class="td-image">
-      <a href="/book/book-details/{{this.id}}" class="details-button">
-            <img
-            class="list-image"
-              src="data:image/png;base64,{{this.image}}"
-              alt="{{this.title}}" />
-      </a>
-          </td>
-          <td class="td-title">
-      <a href="/book/book-details/{{this.id}}" class="details-button">
-            {{this.title}}</a> 
-            </td>
-          <td class="td-author">{{this.author}}</td>
-          <td class="td-button">
-            <form action="/book/edit/{{this.id}}" method="GET">
-              <button type="submit" class="list-edit-button">Edit</button>
-            </form>
-            <form action="/book/delete/{{this.id}}" method="POST">
-              <button type="submit" class="list-delete-button">Delete</button>
-            </form>
-          </td>
+          <th scope="col">image</th>
+          <th scope="col">title</th>
+          <th scope="col">author</th>
+          <th scope="col">Action</th>
         </tr>
-      {{/each}}
-    </tbody>
-  </table>
-  {{else}}
-  <p>{{message}}</p>
-{{/if}}
+      </thead>
+      <tbody>
+        {{#each books}}
+          <tr>
+            <td class="td-image">
+        <a href="/book/book-details/{{this.id}}" class="details-button">
+              <img
+              class="list-image"
+                src="data:image/png;base64,{{this.image}}"
+                alt="{{this.title}}" />
+        </a>
+            </td>
+            <td class="td-title">
+        <a href="/book/book-details/{{this.id}}" class="details-button">
+              {{this.title}}</a> 
+              </td>
+            <td class="td-author">{{this.author}}</td>
+            <td class="td-button">
+              <form action="/book/edit/{{this.id}}" method="GET">
+                <button type="submit" class="list-edit-button">Edit</button>
+              </form>
+              <form action="/book/delete/{{this.id}}" method="POST">
+                <button type="submit" class="list-delete-button">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{#if (gt totalPages 1)}}
+    <nav class="pagination">
+      <ul>
+        {{#each (range 1 totalPages)}}
+        <li class="{{#ifEquals ../currentPage this}}active{{/ifEquals}}">
+          <a href="?page={{this}}&limit=10">{{this}} </a>
+        </li>
+        {{/each}}
+      </ul>
+    </nav>
+    {{/if}}
+    {{else}}
+    <p>{{message}}</p>
+  {{/if}}
+  </div>
 </div>

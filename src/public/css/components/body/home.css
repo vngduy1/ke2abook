@@ -1,7 +1,9 @@
 /* Main container styling */
 .main {
   text-align: center;
-  background-color: #f9f9f9; }
+  background-color: #f9f9f9;
+  max-width: 1200px;
+  margin: auto; }
 
 /* Welcome section */
 .welcome {

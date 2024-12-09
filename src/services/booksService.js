@@ -1,4 +1,5 @@
-const { Book, Category, Sequelize } = require('../models')
+const { Book, Category, Sequelize, ReadingStatus } = require('../models')
+const { Op } = require('sequelize')
 const fs = require('fs')
 
 const path = require('path')
@@ -15,15 +16,86 @@ const booksService = {
     }
   },
   // Tìm kiếm sách
-  searchBooks: async (keyword) => {
-    return await Book.findAll({
-      where: {
-        title: {
-          [Op.like]: `%${keyword}%`,
-        },
-      },
-      raw: true,
-    })
+  searchBooks: async ({
+    userId,
+    keyword,
+    categoryId,
+    status,
+    owned,
+    page = 1,
+    limit = 10,
+  }) => {
+    try {
+      //Dieu kien
+      const whereConditions = {
+        userId,
+      }
+
+      //status
+      if (status && status !== 'all') {
+        whereConditions.status = status
+      }
+
+      //Owned
+      if (owned && owned !== 'all') {
+        whereConditions.owned = owned === '1'
+      }
+
+      const offset = (page - 1) * limit
+
+      //truy van du lieu
+      const results = await ReadingStatus.findAndCountAll({
+        where: whereConditions,
+        include: [
+          {
+            model: Book,
+            as: 'book',
+            where: {
+              ...(keyword
+                ? {
+                    title: {
+                      [Op.like]: `%${keyword}%`,
+                    },
+                  }
+                : {}),
+              ...(categoryId && categoryId !== 'all'
+                ? {
+                    categoryId,
+                  }
+                : {}),
+            },
+          },
+        ],
+        limit,
+        offset,
+        raw: true,
+        nest: true,
+      })
+
+      // results.rows.forEach((row) => {
+      //   console.log('Book data:', row.book)
+      // })
+
+      if (!results || results.length === 0) {
+        return {
+          errCode: -1,
+          data: [],
+          errMessage: '本が存在ない',
+        }
+      } else {
+        return {
+          errCode: 0,
+          data: results.rows,
+          totalBooks: results.count,
+        }
+      }
+    } catch (error) {
+      console.log(error)
+      return {
+        errCode: 2,
+        errMessage: error.message,
+      }
+    }
   },
 
   getBookById: async (bookId, userId) => {

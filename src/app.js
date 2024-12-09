@@ -33,6 +33,17 @@ app
         isEqual: (a, b) => a == b,
         eq: (a, b) => a === b,
         and: (a, b) => a && b,
+        gt: (a, b) => a > b,
+        range: (start, end) => {
+          const result = []
+          for (let i = start; i <= end; i++) {
+            result.push(i)
+          }
+          return result
+        },
+        ifEquals: (a, b, options) => {
+          return a === b ? options.fn(this) : options.inverse(this)
+        },
       },
     }),
   )

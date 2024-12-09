@@ -22,38 +22,38 @@
 }
 
 /* 検索バーのスタイル */
-.search-bar {
-  flex: 2;
-  display: flex;
-  align-items: center;
-}
+// .search-bar {
+//   flex: 2;
+//   display: flex;
+//   align-items: center;
+// }
 
-.search-input {
-  flex: 1;
-  padding: 8px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px 0 0 4px;
-  outline: none;
-}
+// .search-input {
+//   flex: 1;
+//   padding: 8px 10px;
+//   border: 1px solid #ccc;
+//   border-radius: 4px 0 0 4px;
+//   outline: none;
+// }
 
-.search-btn {
-  padding: 8px 15px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+// .search-btn {
+//   padding: 8px 15px;
+//   background-color: #007bff;
+//   color: white;
+//   border: none;
+//   border-radius: 0 4px 4px 0;
+//   cursor: pointer;
+//   transition: background-color 0.3s ease;
+// }
 
-.search-btn:hover {
-  background-color: #0056b3;
-}
+// .search-btn:hover {
+//   background-color: #0056b3;
+// }
 
-/* 最初の検索要素とメニュー要素を非表示にします */
-.search-bar {
-  display: none;
-}
+// /* 最初の検索要素とメニュー要素を非表示にします */
+// .search-bar {
+//   display: none;
+// }
 
 .nav-menu {
   display: none;
@@ -100,7 +100,7 @@
     position: relative;
   }
 
-  .search-bar,
+  // .search-bar,
   .nav-menu {
     display: none; /* ロゴだけを表示 */
   }
@@ -163,7 +163,7 @@
     gap: 10px;
   }
 
-  .search-toggle,
+  // .search-toggle,
   .nav-toggle {
     width: 40px;
     cursor: pointer;
@@ -174,37 +174,37 @@
   }
 
   /* アイコン用のスペースを確保する */
-  .search-bar {
-    display: none;
-    position: absolute;
-    top: 70px;
-    // left: 0;
-    width: 90%;
-    background-color: white;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
+  // .search-bar {
+  //   display: none;
+  //   position: absolute;
+  //   top: 70px;
+  //   // left: 0;
+  //   width: 90%;
+  //   background-color: white;
+  //   padding: 10px;
+  //   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  //   z-index: 1000;
+  // }
 
-  .search-bar input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
+  // .search-bar input {
+  //   width: 100%;
+  //   padding: 10px;
+  //   border-radius: 4px;
+  //   border: 1px solid #ccc;
+  // }
 
-  .search-bar button {
-    padding: 10px;
-    background-color: #007bff;
-    border: none;
-    color: white;
-    border-radius: 4px;
-  }
+  // .search-bar button {
+  //   padding: 10px;
+  //   background-color: #007bff;
+  //   border: none;
+  //   color: white;
+  //   border-radius: 4px;
+  // }
 
-  /* 検索アイコンをクリックすると、検索バーが表示されます */
-  .search-bar.active {
-    display: block;
-  }
+  // /* 検索アイコンをクリックすると、検索バーが表示されます */
+  // .search-bar.active {
+  //   display: block;
+  // }
 
   .nav-menu {
     display: none;
@@ -237,14 +237,14 @@
 }
 
 @media (min-width: 769px) {
-  .search-bar,
+  // .search-bar,
   .nav-menu {
     display: flex;
     position: static;
     flex-direction: row;
   }
 
-  .search-toggle,
+  // .search-toggle,
   .nav-toggle {
     display: none;
   }

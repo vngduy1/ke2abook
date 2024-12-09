@@ -1,49 +1,82 @@
-.list-books-container {
+.list-books-container,
+.list-trash-container {
   margin: auto;
-  max-width: 1000px;
-  padding-top: 40px; }
-  .list-books-container .list-books-title {
-    text-align: center;
-    margin: 20px auto;
-    font-size: 50px; }
-  .list-books-container .search-bar form {
+  max-width: 1200px;
+  padding-top: 40px;
+  gap: 20px; }
+  .list-books-container .list-books-left,
+  .list-trash-container .list-books-left {
+    flex: 1; }
+  .list-books-container .list-books-btn,
+  .list-trash-container .list-books-btn {
     display: flex;
-    align-items: center;
-    width: 100%;
-    gap: 10px; }
-  .list-books-container .sort-bar form {
+    gap: 20px;
+    padding: 5px; }
+  .list-books-container .search-bar form,
+  .list-trash-container .search-bar form {
+    width: 100%; }
+  .list-books-container .sort-bar form,
+  .list-trash-container .sort-bar form {
     padding: 24px 0;
     white-space: nowrap; }
-  .list-books-container .sort-bar label {
+  .list-books-container .sort-bar label,
+  .list-trash-container .sort-bar label {
     display: flex;
     align-items: center;
     gap: 5px; }
-  .list-books-container .sort-list {
+  .list-books-container .sort-list,
+  .list-trash-container .sort-list {
     display: flex;
-    gap: 30px; }
-  .list-books-container .table {
+    flex-wrap: wrap;
+    gap: 10px; }
+  .list-books-container .list-books-right,
+  .list-trash-container .list-books-right {
+    flex: 2; }
+  .list-books-container .list-books-title,
+  .list-trash-container .list-books-title {
+    text-align: center;
+    margin: 20px auto;
+    font-size: 50px; }
+  .list-books-container .table,
+  .list-trash-container .table {
     white-space: nowrap; }
-    .list-books-container .table .td-image {
+    .list-books-container .table .td-image,
+    .list-trash-container .table .td-image {
       width: 54px;
       height: auto; }
-    .list-books-container .table .list-image {
+    .list-books-container .table .list-image,
+    .list-trash-container .table .list-image {
       width: 100%; }
     .list-books-container .table .td-title,
-    .list-books-container .table .td-author {
+    .list-books-container .table .td-author,
+    .list-trash-container .table .td-title,
+    .list-trash-container .table .td-author {
       max-width: 200px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis; }
-    .list-books-container .table a {
+    .list-books-container .table a,
+    .list-trash-container .table a {
       text-decoration: none; }
-    .list-books-container .table .td-button {
+    .list-books-container .table .td-button,
+    .list-trash-container .table .td-button {
       width: 100px;
       height: auto; }
-    .list-books-container .table .list-edit-button {
+    .list-books-container .table .list-edit-button,
+    .list-trash-container .table .list-edit-button {
       width: 90px;
       background-color: #d3d354; }
-    .list-books-container .table .list-restore-button {
+    .list-books-container .table .list-restore-button,
+    .list-trash-container .table .list-restore-button {
       width: 90px; }
-    .list-books-container .table .list-delete-button {
+    .list-books-container .table .list-delete-button,
+    .list-trash-container .table .list-delete-button {
       width: 90px;
       background-color: red; }
+
+.list-books-container {
+  display: flex; }
+
+@media (max-width: 480px) {
+  .list-books-container {
+    display: block; } }

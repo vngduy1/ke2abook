@@ -49,6 +49,7 @@ const booksController = {
     const [sortField, sortOrder] = sortOption.split('_')
 
     try {
+      const categories = await booksService.getCategories()
       const books = await booksService.getBooksByUserId(
         userId,
         sortField,
@@ -70,6 +71,7 @@ const booksController = {
           user: sessionUser,
           sortField,
           sortOrder,
+          categories,
         })
       } else {
         const errMessage = books.errMessage
@@ -91,14 +93,70 @@ const booksController = {
 
   // Tìm kiếm sách
   searchBooks: async (req, res) => {
+    const sessionUser = req.session.user
+    const categories = await booksService.getCategories()
     try {
-      const keyword = req.query.keyword
-      const books = await booksService.searchBooks(keyword)
+      const {
+        keyword,
+        categoryId,
+        status = 'all',
+        owned = 'all',
+        page = 1,
+        limit = 10,
+      } = req.query
+      console.log(req.query)
 
-      res.render('./books/listBooks.hbs', { books })
+      const result = await booksService.searchBooks({
+        userId: sessionUser.id,
+        keyword,
+        categoryId,
+        status,
+        owned,
+        page: parseInt(page, 10) || 1,
+        limit: parseInt(limit, 10) || 10,
+      })
+      //Lay tat ca ca status va owned
+      // const books = result.data.map((row) => ({
+      //   ...row,
+      //   ...row.book,
+      // }))
+
+      //chi lay book
+      const books = result.data.map((row) => row.book)
+
+      if (result.errCode === -1) {
+        res.render('./books/listBooks.hbs', {
+          books: result.data,
+          user: sessionUser.id,
+          message: result.errMessage,
+        })
+      }
+
+      const selectedCategoryId =
+        categoryId !== 'all' ? parseInt(categoryId, 10) : 'all'
+      if (result.errCode === 0) {
+        const totalPages = Math.ceil(result.totalBooks / limit)
+        res.render('./books/listBooks.hbs', {
+          books,
+          user: sessionUser,
+          currentPage: parseInt(page, 10),
+          totalPages,
+          hasPagination: result.totalBooks > limit,
+          categories,
+          query: { ...req.query, categoryId: selectedCategoryId },
+        })
+      } else {
+        res.render('./books/errorBook.hbs', {
+          user: sessionUser,
+          errMessage: result.errMessage,
+        })
+      }
     } catch (error) {
       console.error('Error searching books:', error)
-      res.status(500).render('error', { message: 'Internal Server Error' })
+      res.render('./books/errorBooks.hbs', {
+        user: sessionUser,
+        errMessage: error.message,
+      })
     }
   },
 
