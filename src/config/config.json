@@ -1,10 +1,16 @@
 {
   "development": {
-    "username": "root",
-    "password": "",
-    "database": "ke2abook",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "umqjhowkd3oduiy9",
+    "password": "tUOYhvggc03zTt81ctQx",
+    "database": "bzzkic2id36c2rtlxvy6",
+    "host": "bzzkic2id36c2rtlxvy6-mysql.services.clever-cloud.com",
+    "dialect": "mysql",
+    "port": 3306,
+    "dialectOptions": {
+      "ssl": {
+        "rejectUnauthorized": false
+      }
+    }
   },
   "test": {
     "username": "root",
