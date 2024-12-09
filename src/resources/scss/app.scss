@@ -19,8 +19,7 @@ html {
 
 .app-body {
   min-height: 100vh;
-  max-width: 1200px;
-  margin: auto;
+  padding: 34px;
 }
 
 //mobileディスプレイ
@@ -28,12 +27,16 @@ html {
   .app {
     max-width: 100%;
   }
+  .app-body {
+    padding: 5px;
+  }
 }
 
 //tableディスプレイ
 @media (max-width: 768px) and (min-width: 481px) {
   .app {
     max-width: 100%;
+    padding: 10px;
   }
 }
 
