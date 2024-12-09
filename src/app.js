@@ -75,7 +75,7 @@ app.get('/', (req, res) => {
 })
 
 //ローカルポート
-const port = 3000
+const port = process.env.PORT
 
 //リッスンポート
 app.listen(port, () => {
