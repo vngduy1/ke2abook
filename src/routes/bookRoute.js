@@ -2,9 +2,11 @@ const express = require('express')
 
 const booksController = require('../controllers/booksController')
 const upload = require('../middleware/upload')
+const { isAuthenticated } = require('../middleware/authenticated')
 
 let router = express.Router()
 let userRoute = (app) => {
+  router.use(isAuthenticated)
   //book
   router.get(
     '/create-new-book',

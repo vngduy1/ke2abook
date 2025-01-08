@@ -2,11 +2,14 @@
 @import 'components/header';
 @import 'components/footer';
 @import 'components/body/home';
+@import 'components/body/about';
+@import 'components/body/contact';
 @import 'components/body/admin/crud';
 @import 'components/body/admin/displayCRUD';
 @import 'components/body/user/profile';
 @import 'components/body/book/createBook';
 @import 'components/body/book/listBook';
+@import 'components/body/book/book-details';
 
 /* ページ全体にデフォルトのマージンやパディングがないことを確認してください。 */
 body,
@@ -16,19 +19,19 @@ html {
   height: 100%;
   box-sizing: border-box;
 }
+.app {
+  background-color: #f0e6f4;
+}
 
 .app-body {
   min-height: 100vh;
-  padding: 34px;
+  background-color: #f0e6f4;
 }
 
 //mobileディスプレイ
 @media (max-width: 480px) {
   .app {
     max-width: 100%;
-  }
-  .app-body {
-    padding: 5px;
   }
 }
 

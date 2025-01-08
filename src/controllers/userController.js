@@ -16,11 +16,11 @@ const handleCreateNewUser = async (req, res) => {
     let userData = req.body
 
     if (file) {
-      // Đọc file và chuyển sang Base64
+      //ファイルを読み取ってbase64に変換します
       const imageBuffer = fs.readFileSync(file.path)
       const imageBase64 = imageBuffer.toString('base64') // Chuyển thành chuỗi Base64
 
-      // Gán chuỗi Base64 vào userData
+      //Base64文字列をユーザーデータに割り当てる
       userData.image = imageBase64
       fs.unlinkSync(file.path)
     } else {
@@ -34,11 +34,13 @@ const handleCreateNewUser = async (req, res) => {
     if (message.errCode === 0) {
       res.redirect('/api/sign-in')
     } else {
-      return res.status(400).json({ errMessage: message.errMessage })
+      res.render('./user/signUp.hbs', {
+        errMessage: 'エラーが発生しました。もう一度お試しください',
+      })
     }
   } catch (error) {
     console.error('Error:', error)
-    return res.status(500).json({ errMessage: 'Internal server error' })
+    res.redirect('/')
   }
 }
 
@@ -49,8 +51,6 @@ const handleSignIn = (req, res) => {
 const handleLogin = async (req, res) => {
   let email = req.body.email
   let password = req.body.password
-
-  // let user = (await req.session.user) || null
 
   if (!email || !password) {
     return res.render('./user/login.hbs', {
@@ -82,20 +82,15 @@ const handleLogout = async (req, res) => {
   try {
     await req.session.destroy((err) => {
       if (err) {
-        console.error('Error destroying session:', err)
-        return res
-          .status(500)
-          .send('ログアウトに失敗しました。もう一度お試しください。')
+        console.error('セッション破棄エラー:', err)
+        res.redirect('/')
       }
 
-      res.clearCookie('connect.sid') // Xóa cookie phiên
-      return res.redirect('/api/sign-in') // Chuyển hướng về trang đăng nhập
+      res.clearCookie('connect.sid') // セッションCookieを削除する
+      return res.redirect('/api/sign-in') // ログインページにリダイレクトします
     })
   } catch (error) {
     console.log(error)
-    return res
-      .status(500)
-      .send('handleLogoutに失敗しました。もう一度お試しください。')
   }
 }
 
@@ -103,17 +98,7 @@ const getProfilePage = async (req, res) => {
   try {
     const user = await req.session.user
 
-    if (!user) {
-      return res.redirect('/api/sign-in')
-    }
-
     const userData = await userService.handleUserProfile(user)
-
-    //   await db.User.findOne({
-    //   where: { id: user.id },
-    //   attributes: ['id', 'email', 'firstName', 'lastName', 'address', 'image'],
-    //   raw: true,
-    // })
 
     if (userData.errCode === 0) {
       if (userData?.user?.image) {
@@ -129,7 +114,7 @@ const getProfilePage = async (req, res) => {
     }
   } catch (error) {
     console.error('Lỗi khi truy cập trang hồ sơ:', error)
-    res.status(500).send('Đã xảy ra lỗi máy chủ.')
+    redirect('/')
   }
 }
 
@@ -140,11 +125,11 @@ const handleEditProfile = async (req, res) => {
     let file = req.file
     let userData = req.body
     if (file) {
-      // Đọc file và chuyển sang Base64
+      // ファイルを読み取ってbase64に変換します
       const imageBuffer = fs.readFileSync(file.path)
       const imageBase64 = imageBuffer.toString('base64') // Chuyển thành chuỗi Base64
 
-      // Gán chuỗi Base64 vào userData
+      // Base64文字列をユーザーデータに割り当てる
       userData.image = imageBase64
       fs.unlinkSync(file.path)
     }

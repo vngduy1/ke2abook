@@ -1,10 +1,10 @@
 const multer = require('multer')
 const path = require('path')
 
-// Cấu hình nơi lưu file và tên file
+// ファイルの保存場所とファイル名を設定します
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/') // Thư mục lưu file
+    cb(null, 'uploads/') // ファイルを保存するディレクトリ
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9)
@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
   },
 })
 
-// Tạo middleware xử lý file
+// ファイルを処理するミドルウェアを作成する
 const upload = multer({ storage })
 
 module.exports = upload

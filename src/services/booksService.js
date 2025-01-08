@@ -151,7 +151,7 @@ const booksService = {
         return {
           errCode: 0,
           data: [],
-          errMessage: 'Thung rac trong',
+          errMessage: '現在、書籍はありません。',
         }
       }
     } catch (error) {
@@ -185,7 +185,6 @@ const booksService = {
         }
       } else {
         const data = await Book.create(bookData)
-        console.log(data)
         if (data) {
           return {
             errCode: 0,
@@ -309,7 +308,6 @@ const booksService = {
         where: { id: bookId },
         paranoid: false, // Bao gồm cả sách đã bị xóa mềm
       })
-      console.log(book)
 
       if (!book) {
         return {
@@ -340,9 +338,6 @@ const booksService = {
   hardDeleteBook: async (id) => {
     try {
       const book = await Book.findByPk(id, { paranoid: false })
-      console.log(id)
-
-      console.log(book)
 
       if (!book) {
         return {

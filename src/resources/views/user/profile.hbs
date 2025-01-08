@@ -97,19 +97,19 @@
   </div>
 
   <script>
-    // Hàm mở file picker khi nhấn vào ảnh
+    // 画像をクリックするとファイルピッカーを開く機能
     function triggerFileInput() {
       document.getElementById('imageInput').click()
     }
 
-    // Hàm xem trước ảnh tạm thời
+    //一時的な画像プレビュー機能
     function previewTemporaryImage(event) {
       const file = event.target.files[0]
       const preview = document.getElementById('profileImage')
       if (file) {
         const reader = new FileReader()
         reader.onload = () => {
-          preview.src = reader.result // Hiển thị ảnh tạm thời
+          preview.src = reader.result
         }
         reader.readAsDataURL(file)
       }

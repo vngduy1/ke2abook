@@ -60,8 +60,8 @@ module.exports = {
         },
       },
       {
-        paranoid: true, // Kích hoạt soft delete
-        timestamps: true, // Tạo trường createdAt, updatedAt
+        paranoid: true, // 論理的な削除を有効にする
+        timestamps: true, // フィールドを作成しますcreatedat、updatedat
       },
     )
   },

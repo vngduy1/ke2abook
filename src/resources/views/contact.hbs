@@ -1,0 +1,103 @@
+<div class="contact">
+  <header class="contact-header">
+    <h1>お問い合わせ</h1>
+    <p>お気軽にご質問ください</p>
+  </header>
+
+  <main>
+    <section class="contact-faq">
+      <div class="contact-body-title">
+        <h2>よくある質問</h2>
+        <h4>私たちのサービスに関する疑問を解消します。</h4>
+      </div>
+      <div class="contact-faq-item">
+        <button class="contact-faq-question">本を追加する方法は？</button>
+        <div class="contact-faq-answer">
+          <p>
+            本を追加するには、アカウントにログイン後、'本を追加'ボタンをクリックしてください。その後、必要な情報を入力し、保存をクリックすれば完了です。これにより、あなたの本のリストに新しい本が追加されます。
+          </p>
+        </div>
+      </div>
+      <div class="contact-faq-item">
+        <button class="contact-faq-question">
+          所有する本の管理は簡単ですか？
+        </button>
+        <div class="contact-faq-answer">
+          <p>
+            はい、私たちのプラットフォームでは、所有する本を簡単に管理できます。ユーザーは本の情報を編集したり、削除したりすることができます。直感的なインターフェースにより、煩雑さはありません。
+          </p>
+        </div>
+      </div>
+      <div class="contact-faq-item">
+        <button class="contact-faq-question">
+          データのバックアップはできますか？
+        </button>
+        <div class="contact-faq-answer">
+          <p>
+            もちろん、あなたの書籍データは定期的にバックアップされます。さらに、手動でバックアップを作成するオプションも用意していますので、安心してご利用いただけます。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-info">
+      <div class="contact-info-houhou">
+        <h2>連絡方法</h2>
+        <h4>私たちに簡単に連絡できます</h4>
+      </div>
+      <div class="contact-info-col">
+        <form class="contact-form">
+          <input
+            type="text"
+            placeholder="名前"
+            class="contact-input"
+            required
+          />
+          <input
+            type="email"
+            placeholder="メールアドレス"
+            class="contact-input"
+            required
+          />
+          <textarea
+            placeholder="メッセージ"
+            class="contact-input"
+            required
+          ></textarea>
+          <button type="submit" class="contact-submit">送信</button>
+        </form>
+        <div class="contact-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.0304056565393!2d135.50532541522894!3d34.70989248042943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e69ba5e3e83f%3A0xd91f3b6c1b6ad12f!2zRUNDIOS4reOCteODg-ODg-ODg-OCueOCt-ODvOOCueODquODvOODg-ODieOCvOODluOCqeOCog!5e0!3m2!1sja!2sjp!4v1700043481231!5m2!1sja!2sjp"
+            width="600"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          >
+          </iframe>
+        </div>
+        <div class="contact-details">
+          <p>
+            <i class="fa fa-map-marker"></i> 〒530-0015
+            大阪市北区中崎西2丁目3番35号
+          </p>
+          <p><i class="fa fa-clock"></i> 月~金: 10am-5pm, 土: 1pm-5pm</p>
+          <p><i class="fa fa-phone"></i> 012-3456-7890</p>
+          <p><i class="fa fa-envelope"></i> info@bookstore.jp</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    // FAQ Toggle
+    const faqQuestions = document.querySelectorAll('.contact-faq-question')
+    faqQuestions.forEach((question) => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling
+        answer.classList.toggle('active')
+      })
+    })
+  </script>
+</div>

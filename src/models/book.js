@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'Book',
-      paranoid: true, // Kích hoạt soft delete
+      paranoid: true, //ソフト削除を有効にする
       timestamps: true,
     },
   )

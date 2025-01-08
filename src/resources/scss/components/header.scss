@@ -10,6 +10,7 @@
   justify-content: space-between;
   align-items: center;
   max-width: 1200px;
+  gap: 12px;
   margin: 0 auto;
 }
 
@@ -20,40 +21,6 @@
 .logo-img {
   max-height: 85px;
 }
-
-/* 検索バーのスタイル */
-// .search-bar {
-//   flex: 2;
-//   display: flex;
-//   align-items: center;
-// }
-
-// .search-input {
-//   flex: 1;
-//   padding: 8px 10px;
-//   border: 1px solid #ccc;
-//   border-radius: 4px 0 0 4px;
-//   outline: none;
-// }
-
-// .search-btn {
-//   padding: 8px 15px;
-//   background-color: #007bff;
-//   color: white;
-//   border: none;
-//   border-radius: 0 4px 4px 0;
-//   cursor: pointer;
-//   transition: background-color 0.3s ease;
-// }
-
-// .search-btn:hover {
-//   background-color: #0056b3;
-// }
-
-// /* 最初の検索要素とメニュー要素を非表示にします */
-// .search-bar {
-//   display: none;
-// }
 
 .nav-menu {
   display: none;
@@ -71,7 +38,12 @@
 .nav-list {
   list-style: none;
   display: flex;
+  white-space: nowrap;
+  width: 120%;
   font-size: 18px;
+  background-color: #fef0ef;
+
+  justify-content: flex-end;
   gap: 36px;
   margin: 0;
   padding: 0;
@@ -87,27 +59,55 @@
   color: #333;
   font-weight: bold;
   transition: color 0.3s ease;
-}
+  background-color: transparent;
 
-.nav-list a:hover {
-  color: #007bff;
+  .upload-icon {
+    width: 40px;
+  }
 }
 
 @media (max-width: 480px) {
+  .bookstore-header {
+    padding: 0;
+  }
+
   .header-container {
-    flex-direction: column;
-    align-items: center;
+    display: block;
     position: relative;
   }
 
-  // .search-bar,
+  .nav-toggle {
+    position: relative;
+    top: -40px;
+    width: 40px;
+    cursor: pointer;
+  }
+
+  .logo {
+    position: relative;
+    top: 20px;
+  }
+
   .nav-menu {
     display: none; /* ロゴだけを表示 */
   }
-}
 
-.header-icon {
-  display: none;
+  .nav-menu.active {
+    display: block;
+  }
+
+  .nav-list {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
+
+  .nav-list li {
+    margin: 10px 0;
+  }
 }
 
 .avatar-menu {
@@ -155,14 +155,6 @@
 
 /* 小さな画面向けの構成 */
 @media (max-width: 768px) and (min-width: 481px) {
-  .header-icon {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-
   // .search-toggle,
   .nav-toggle {
     width: 40px;
@@ -173,48 +165,13 @@
     flex: none;
   }
 
-  /* アイコン用のスペースを確保する */
-  // .search-bar {
-  //   display: none;
-  //   position: absolute;
-  //   top: 70px;
-  //   // left: 0;
-  //   width: 90%;
-  //   background-color: white;
-  //   padding: 10px;
-  //   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  //   z-index: 1000;
-  // }
-
-  // .search-bar input {
-  //   width: 100%;
-  //   padding: 10px;
-  //   border-radius: 4px;
-  //   border: 1px solid #ccc;
-  // }
-
-  // .search-bar button {
-  //   padding: 10px;
-  //   background-color: #007bff;
-  //   border: none;
-  //   color: white;
-  //   border-radius: 4px;
-  // }
-
-  // /* 検索アイコンをクリックすると、検索バーが表示されます */
-  // .search-bar.active {
-  //   display: block;
-  // }
-
   .nav-menu {
     display: none;
     position: absolute;
-    top: 70px;
+    top: 120px;
     right: 34px;
     width: 100px;
-    background-color: white;
     padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 1000;
   }
 
@@ -224,9 +181,6 @@
   }
 
   .nav-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
     flex-direction: column;
   }
