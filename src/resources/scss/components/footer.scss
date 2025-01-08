@@ -1,6 +1,11 @@
+.footer-hbs {
+  padding: 34px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 /* フッター全体のスタイル */
 .footer-container {
-  background-color: #f8f9fa; /* 背景色を薄いグレーに設定 */
   padding: 20px 0;
   display: flex;
   gap: 20px;

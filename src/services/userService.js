@@ -37,7 +37,7 @@ const createNewUser = (data) => {
       if (check) {
         resolve({
           errCode: 1,
-          errMessage: 'Your email is already',
+          errMessage: 'あなたのメールアドレスはすでに存在してます。',
         })
       } else {
         let hashPasswordFromBcrypt = await hashUserPassword(data.password)
@@ -47,7 +47,6 @@ const createNewUser = (data) => {
         })
         resolve({
           errCode: 0,
-          message: 'ok',
           data,
         })
       }
@@ -82,21 +81,20 @@ const handleUserLogin = (email, password) => {
           let check = await bcrypt.compareSync(password, user.password)
           if (check) {
             userData.errCode = 0
-            userData.errMessage = `successfully`
             delete user.password
             userData.user = user
           } else {
             userData.errCode = 3
-            userData.errMessage = `Wrong password`
+            userData.errMessage = `パスワード間違ってます。`
           }
         } else {
           userData.errCode = 2
-          userData.errMessage = `User not found`
+          userData.errMessage = `ユーザが存在ません。`
           resolve(userData)
         }
       } else {
         userData.errCode = 1
-        userData.errMessage = `Your Email is not exist in your system`
+        userData.errMessage = `あなたの電子メールはあなたのシステムに存在しません`
       }
       resolve(userData)
     } catch (error) {
@@ -127,16 +125,16 @@ const handleUserProfile = async (data) => {
 
       if (user) {
         userData.errCode = 0
-        userData.errMessage = `successfully`
 
         userData.user = user
       } else {
         userData.errCode = 1
-        userData.errMessage = 'failure'
+        userData.errMessage =
+          'ユーザー情報の取得に失敗しました。もう一度お試しください。'
       }
       resolve(userData)
     } catch (error) {
-      reject((errCode = -2), (errMessage = error))
+      reject({ errCode: -2, errMessage: error })
     }
   })
 }
@@ -168,7 +166,6 @@ const handleEditProfile = async (data, id) => {
 
         resolve({
           errCode: 0,
-          errMessage: 'Update success',
         })
       }
     } catch (error) {
@@ -176,7 +173,7 @@ const handleEditProfile = async (data, id) => {
 
       reject({
         errCode: 1,
-        errMessage: 'User not found',
+        errMessage: 'ユーザが存在ません。',
       })
     }
   })

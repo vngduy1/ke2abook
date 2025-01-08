@@ -1,3 +1,6 @@
+<div class="book-detail-list-button">
+  <a class="btn btn-primary" href="/book/list">書籍リスト</a>
+</div>
 <div class="book-details-container">
   <div class="book-details-image">
     <img src="data:image/jpeg;base64,{{book.image}}" alt="{{book.title}}" />
@@ -14,3 +17,76 @@
     <a href="/book/edit/{{book.id}}" class="edit-button">Edit</a>
   </div>
 </div>
+
+<div class="carousel-container">
+  <button
+    class="carousel-button prev"
+    aria-label="Previous"
+    style="display: none"
+  >
+    &lt;
+  </button>
+  <div class="carousel">
+    {{#each books}}
+    <div class="carousel-item">
+      <a href="/book/book-details/{{this.id}}" class="">
+        <img
+          class="list-image"
+          src="data:image/png;base64,{{this.image}}"
+          alt="{{this.title}}"
+        />
+      </a>
+      <p>{{this.title}}</p>
+    </div>
+    {{/each}}
+  </div>
+  <button class="carousel-button next" aria-label="Next" style="display: none">
+    &gt;
+  </button>
+</div>
+
+<script>
+  const carousel = document.querySelector('.carousel')
+  const items = document.querySelectorAll('.carousel-item')
+  const prevButton = document.querySelector('.carousel-button.prev')
+  const nextButton = document.querySelector('.carousel-button.next')
+
+  // Hàm kiểm tra và ẩn/hiện nút điều hướng
+  function updateNavigationButtons() {
+    const scrollLeft = carousel.scrollLeft
+    const scrollWidth = carousel.scrollWidth
+    const clientWidth = carousel.clientWidth
+
+    // Nếu không còn gì bên trái, ẩn nút prev
+    if (scrollLeft === 0) {
+      prevButton.style.display = 'none'
+    } else {
+      prevButton.style.display = 'block'
+    }
+
+    // Nếu không còn gì bên phải, ẩn nút next
+    if (scrollLeft + clientWidth + 4 >= scrollWidth) {
+      nextButton.style.display = 'none'
+    } else {
+      nextButton.style.display = 'block'
+    }
+  }
+
+  // Chạy hàm kiểm tra ngay khi tải trang
+  updateNavigationButtons()
+
+  // Xử lý sự kiện khi nhấn nút prev
+  prevButton.addEventListener('click', () => {
+    carousel.scrollBy({ left: -360, behavior: 'smooth' })
+    setTimeout(updateNavigationButtons, 300) // Kiểm tra lại sau khi cuộn
+  })
+
+  // Xử lý sự kiện khi nhấn nút next
+  nextButton.addEventListener('click', () => {
+    carousel.scrollBy({ left: 360, behavior: 'smooth' })
+    setTimeout(updateNavigationButtons, 300) // Kiểm tra lại sau khi cuộn
+  })
+
+  // Xử lý khi cuộn bằng tay
+  carousel.addEventListener('scroll', updateNavigationButtons)
+</script>

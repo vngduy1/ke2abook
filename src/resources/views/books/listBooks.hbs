@@ -2,8 +2,8 @@
   <div class="list-books-left">
     
     <div class="list-books-btn">
-      <a class="btn btn-primary" href="/book/create-new-book">制作</a>
-      <a class="btn btn-secondary" href="/book/trash-book">ゴミ箱</a>
+      <a class="btn btn-primary" href="/book/create-new-book">書籍アップロード</a>
+      <a class="btn btn-secondary" href="/book/trash-book">書籍のゴミ箱</a>
     </div>
     <div class="search-bar">
       <form action="/book/search" method="GET">
@@ -12,9 +12,9 @@
           <input type="text" id="keyword" name="keyword" placeholder="検索..." value="{{query.keyword}}"/>
           </div>
         <div class="form-group">
-          <label for="categoryId" >Category:</label>
+          <label for="categoryId" >カテゴリー:</label>
           <select id="categoryId" name="categoryId" required >
-            <option value="all" {{#ifEquals query.categoryId "all"}} selected {{/ifEquals}} >All Categories</option>
+            <option value="all" {{#ifEquals query.categoryId "all"}} selected {{/ifEquals}} >すべてのカテゴリ</option>
             {{#each categories}}
             <option  value=" {{this.id}}"
             {{#ifEquals ../query.categoryId this.id}} selected {{/ifEquals}}
@@ -25,24 +25,24 @@
         <div class="form-group">
           <label for="status">読書状況:</label>
           <select id="status" name="status" >
-            <option value="all" {{#ifEquals query.status "all"}}selected{{/ifEquals}}>all</option>
+            <option value="all" {{#ifEquals query.status "all"}}selected{{/ifEquals}}>全て</option>
+            <!--未読 -->
             <option value="未読" {{#ifEquals query.status "未読"}}selected{{/ifEquals}}>未読</option>
-            <!-- Chưa đọc -->
+            <!-- 読書中 -->
             <option value="読書中" {{#ifEquals query.status "読書中"}}selected{{/ifEquals}}>読書中</option>
-            <!-- Đang đọc -->
+            <!-- 読了 -->
             <option value="読了"{{#ifEquals query.status "読了"}}selected{{/ifEquals}}>読了</option>
-            <!-- Đã đọc -->
           </select>
         </div>
         <div class="form-group">
-          <label for="owned">owned:</label>
+          <label for="owned">所有:</label>
           <select id="owned" name="owned" >
-            <option value="all" {{#ifEquals query.owned "all"}}selected{{/ifEquals}}>all</option>
+            <option value="all" {{#ifEquals query.owned "all"}}selected{{/ifEquals}}>全て</option>
             <option value="0" {{#ifEquals query.owned "0"}}selected{{/ifEquals}}>未所有</option>
             <option value="1" {{#ifEquals query.owned "1"}}selected{{/ifEquals}}>所有</option>
           </select>
         </div>
-        <div class="form-group"><button type="submit">Search</button></div>
+        <div class="form-group"><button type="submit">検索</button></div>
       </form>
     </div>
     
@@ -75,7 +75,7 @@
     </div>
   </div>
   <div class="list-books-right">
-    <h1 class="list-books-title">List of Books</h1>
+    <h1 class="list-books-title">書籍のリスト</h1>
     
     {{#if errMessage}}
     <div class="list-book-message"><h2>{{errMessage}} </h2></div>
@@ -84,10 +84,10 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th scope="col">image</th>
-          <th scope="col">title</th>
-          <th scope="col">author</th>
-          <th scope="col">Action</th>
+          <th scope="col">イメージ</th>
+          <th scope="col">タイトル</th>
+          <th scope="col">著者</th>
+          <th scope="col">行動</th>
         </tr>
       </thead>
       <tbody>
@@ -108,10 +108,10 @@
             <td class="td-author">{{this.author}}</td>
             <td class="td-button">
               <form action="/book/edit/{{this.id}}" method="GET">
-                <button type="submit" class="list-edit-button">Edit</button>
+                <button type="submit" class="list-edit-button">編集</button>
               </form>
               <form action="/book/delete/{{this.id}}" method="POST">
-                <button type="submit" class="list-delete-button">Delete</button>
+                <button type="submit" class="list-delete-button">消す</button>
               </form>
             </td>
           </tr>

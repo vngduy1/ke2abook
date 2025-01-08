@@ -9,7 +9,10 @@ const booksController = {
 
     try {
       const book = await booksService.getBookById(bookId, sessionUser.id)
-
+      const books = await booksService.getBooksByUserId(sessionUser.id)
+      if (books.errCode !== 0) {
+        res.redirect('./books/errorBook.hbs')
+      }
       if (book.errCode === -1) {
         res.redirect('/')
       } else {
@@ -27,9 +30,13 @@ const booksController = {
             user: sessionUser,
             status,
             owned,
+            books: books.data,
           })
         } else {
-          res.render('./books/errorBook.hbs', { errMessage, user: sessionUser })
+          res.render('./books/errorBook.hbs', {
+            errMessage,
+            user: sessionUser,
+          })
         }
       }
     } catch (error) {
@@ -41,7 +48,7 @@ const booksController = {
     }
   },
 
-  // Lấy danh sách sách
+  // リスト
   getAllBooksByUserId: async (req, res) => {
     const sessionUser = await req.session.user
     const userId = await req.session.user.id
@@ -63,7 +70,7 @@ const booksController = {
             user: sessionUser,
             sortField,
             sortOrder,
-            message: 'List book trong',
+            message: '書籍のリスト空いてます。',
           })
         }
         res.render('./books/listBooks.hbs', {
@@ -76,14 +83,14 @@ const booksController = {
       } else {
         const errMessage = books.errMessage
           ? books.errMessage
-          : 'Cannot list book errMessage'
+          : '本をリストできません。'
         res.render('./books/errorBook.hbs', {
           errMessage,
           user: sessionUser,
         })
       }
     } catch (error) {
-      console.error('Error fetching books:', error)
+      console.error('本の取得エラー:', error)
       res.render('./books/errorBook.hbs', {
         errMessage: error,
         user: sessionUser,
@@ -91,7 +98,7 @@ const booksController = {
     }
   },
 
-  // Tìm kiếm sách
+  // 検索
   searchBooks: async (req, res) => {
     const sessionUser = req.session.user
     const categories = await booksService.getCategories()
@@ -104,7 +111,6 @@ const booksController = {
         page = 1,
         limit = 10,
       } = req.query
-      console.log(req.query)
 
       const result = await booksService.searchBooks({
         userId: sessionUser.id,
@@ -115,13 +121,8 @@ const booksController = {
         page: parseInt(page, 10) || 1,
         limit: parseInt(limit, 10) || 10,
       })
-      //Lay tat ca ca status va owned
-      // const books = result.data.map((row) => ({
-      //   ...row,
-      //   ...row.book,
-      // }))
 
-      //chi lay book
+      //書籍だけ取得
       const books = result.data.map((row) => row.book)
 
       if (result.errCode === -1) {
@@ -152,7 +153,7 @@ const booksController = {
         })
       }
     } catch (error) {
-      console.error('Error searching books:', error)
+      console.error('書籍検索エラー:', error)
       res.render('./books/errorBooks.hbs', {
         user: sessionUser,
         errMessage: error.message,
@@ -170,15 +171,15 @@ const booksController = {
   // 新しい本を作成する
   createBook: async (req, res) => {
     try {
-      const file = req.file // Ảnh bìa
+      const categories = await booksService.getCategories()
+      const file = req.file
       const { title, author, description, categoryId, userId, status } =
         req.body
-      const owned = req.body.owned === 'on' // Checkbox trả về "on" nếu được chọn
+      const owned = req.body.owned === 'on' // チェックボックスが選択されている場合は「オン」を返します
 
       if (!title || !author || !categoryId || !status) {
-        const categories = await booksService.getCategories()
         const user = await req.session.user
-        const errMessage = 'not property '
+        const errMessage = '所有物ではありません '
         return res.render('./books/createBook.hbs', {
           categories,
           user,
@@ -215,8 +216,11 @@ const booksController = {
       } else {
         const user = await req.session.user
 
-        let messageError = newBook.errMessage
-        res.render('./books/createBook.hbs', { errMessage: messageError, user })
+        res.render('./books/createBook.hbs', {
+          errMessage: newBook.errMessage,
+          user,
+          categories,
+        })
       }
     } catch (error) {
       console.log(error)
@@ -334,10 +338,10 @@ const booksController = {
 
   getTrashBookByUserId: async (req, res) => {
     const sessionUser = await req.session.user
-    const userId = sessionUser.id // Lấy userId từ session
+    const userId = sessionUser.id
 
     try {
-      // Gọi service để lấy sách đã xóa mềm của người dùng
+      // サービスを呼び出して、ユーザーの論理的に削除された書籍を取得します
       const result = await booksService.getTrashBooksByUserId(userId)
       const { errCode, data, errMessage } = result
 
@@ -346,23 +350,26 @@ const booksController = {
           return res.render('./books/listTrashBooks.hbs', {
             books: [],
             user: sessionUser,
-            message: 'Thùng rác trống.', // Hiển thị thông báo
+            message: '空いてます。',
           })
         }
-        // Render trang listTrashBooks.hbs nếu có dữ liệu sách đã xóa
+        // 削除された書籍データがある場合は listtrashbooks.hbs ページをレンダリングします
         res.render('./books/listTrashBooks.hbs', {
           books: data,
           user: sessionUser,
         })
       } else {
-        // Render trang lỗi nếu không có sách nào đã bị xóa
+        // 本が削除されていない場合はエラー ページを表示します
         res.render('./books/errorBook.hbs', {
-          errMessage: errMessage || 'No deleted books found.',
+          errMessage: errMessage || '削除された本は見つかりませんでした。',
           user: sessionUser,
         })
       }
     } catch (error) {
-      console.error('Error fetching trash books by userId:', error)
+      console.error(
+        'ユーザー ID によるゴミブックの取得中にエラーが発生しました:',
+        error,
+      )
       res.render('./books/errorBook.hbs', {
         errMessage: error.message,
         user: sessionUser,
@@ -371,22 +378,24 @@ const booksController = {
   },
 
   restoreBookById: async (req, res) => {
-    const bookId = req.params.id // Lấy ID sách từ URL
+    const bookId = req.params.id
+    const sessionUser = await req.session.user
 
     try {
       const result = await booksService.restoreBookById(bookId)
 
       if (result.errCode === 0) {
-        // Redirect hoặc render thông báo thành công
-        res.redirect('/book/trash-book') // Chuyển hướng về danh sách sách đã xóa
+        res.redirect('/book/trash-book')
       } else {
-        // Render trang lỗi với thông báo
-        res.render('./books/errorBook.hbs', { errMessage: result.errMessage })
+        res.render('./books/errorBook.hbs', {
+          errMessage: result.errMessage,
+          user: sessionUser.id,
+        })
       }
     } catch (error) {
-      console.error('Error restoring book:', error)
+      console.error('本の復元中にエラーが発生しました:', error)
       res.render('./books/errorBook.hbs', {
-        errMessage: 'Internal Server Error',
+        errMessage: '内部サーバーエラー',
       })
     }
   },
@@ -396,7 +405,6 @@ const booksController = {
     const sessionUser = req.session.user
     try {
       const bookId = req.params.id
-      console.log(bookId)
 
       const deletedBook = await booksService.hardDeleteBook(bookId)
 
@@ -427,7 +435,7 @@ const booksController = {
           break
       }
     } catch (error) {
-      console.log('hard delete', error)
+      console.log('ハード削除', error)
 
       res.render('./books/errorBook.hbs', {
         errMessage: error,

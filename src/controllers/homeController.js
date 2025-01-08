@@ -4,4 +4,14 @@ let getHomePage = async (req, res) => {
   res.render('home.hbs', { user })
 }
 
-module.exports = { getHomePage }
+let getAbout = async (req, res) => {
+  let user = (await req.session.user) || null
+  res.render('about', { user })
+}
+
+let getContact = async (req, res) => {
+  let user = (await req.session.user) || null
+  res.render('contact', { user })
+}
+
+module.exports = { getHomePage, getAbout, getContact }

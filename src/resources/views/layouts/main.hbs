@@ -2,22 +2,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Ke2abook</title>
     <link rel="stylesheet" href="/css/app.css" />
+    <link rel="icon" href="/images/icon.png" type="image/png" />
   </head>
   <body>
     <div class="app">
-      {{!-- headerインターフェースを取得する --}}
-      <div class="">{{> header}}</div>
-
-      {{!-- bodyセクションの役割: -
+      {{!-- headerインターフェースを取得する --}} {{> header}} {{!--
+      bodyセクションの役割: -
       この部分にページごとのコンテンツを動的に表示します。 - `{{{body}}}`
       はサーバー側でレンダリングされたHTMLやテキストを挿入するために使用されます。
       - 例えば、各ページ（ホーム、詳細ページなど）の内容がここに差し込まれます。
       --}}
       <div class="app-body">{{{body}}}</div>
-      {{!-- footerインターフェースを取得する --}}
-      <div class="">{{> footer}}</div>
+      {{> footer}}
     </div>
   </body>
 </html>

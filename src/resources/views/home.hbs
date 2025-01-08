@@ -2,6 +2,13 @@
   <section class="welcome">
     <h2>ようこそ{{user.firstName}} {{user.lastName}}! Ke2aBookへ</h2>
     <p>本のコレクションを整理して、管理しやすいシステムを体験してください。</p>
+    {{#unless user}}
+    <section class="cta">
+      <h2>今すぐ本の管理を始めましょう</h2>
+      <a href="/api/sign-in" class="btn btn-primary">ログイン</a>
+      <a href="/api/sign-up" class="btn btn-secondary">新規登録</a>
+    </section>
+    {{/unless}}
   </section>
   <section class="features">
     <h2>主な機能</h2>
@@ -36,11 +43,4 @@
       </div>
     </div>
   </section>
-  {{#unless user}}
-  <section class="cta">
-    <h2>今すぐ本の管理を始めましょう</h2>
-    <a href="/login" class="btn btn-primary">ログイン</a>
-    <a href="/register" class="btn btn-secondary">新規登録</a>
-  </section>
-  {{/unless}}
 </main>

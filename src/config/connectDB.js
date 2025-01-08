@@ -2,6 +2,8 @@ require('dotenv').config()
 
 const { Sequelize } = require('sequelize')
 const { DB_NAME, DB_USER, DB_PASS, DB_HOST, DB_DIALECT, DB_PORT } = process.env
+
+//DEPLOY用
 const {
   MYSQL_ADDON_HOST,
   MYSQL_ADDON_DB,
@@ -10,6 +12,14 @@ const {
   MYSQL_ADDON_PASSWORD,
 } = process.env
 
+//local用
+// const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASS, {
+//   host: DB_HOST,
+//   dialect: DB_DIALECT,
+//   logging: false,
+// })
+
+//DEPLOY用
 const sequelize = new Sequelize(
   MYSQL_ADDON_DB,
   MYSQL_ADDON_USER,
@@ -26,6 +36,7 @@ const sequelize = new Sequelize(
     },
   },
 )
+
 let connectDB = async () => {
   try {
     await sequelize.authenticate()

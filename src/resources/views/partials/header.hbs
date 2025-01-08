@@ -7,40 +7,22 @@
       </a>
     </div>
 
-    <div class="header-icon">
-      <!-- アイコンで検索バーを表示 -->
-      <div class="search-toggle">
-        {{!--
-        <img
-          src="/images/icon/search.svg"
-          alt="Search Icon"
-          class="search-icon"
-        />
-        --}}
-      </div>
-      <!-- アイコンでナビゲーションメニューを表示 -->
-      <div class="nav-toggle">
-        <img src="/images/icon/nav.svg" alt="Nav Icon" class="nav-icon" />
-      </div>
+    <div class="nav-toggle">
+      <img src="/images/icon/nav.svg" alt="Nav Icon" class="nav-icon" />
     </div>
-    {{!--
-    <div class="search-bar">
-      <input
-        type="text"
-        class="search-input"
-        placeholder="本、著者、ジャンルを検索する"
-      />
-      <button class="search-btn">検索</button>
-    </div>
-    --}} {{!-- navメニュー --}}
+
     <nav class="nav-menu">
       <ul class="nav-list">
-        {{#unless user.isAdmin}}
+        {{#unless user.isAdmin}} {{#if user}}
         <li>
-          <a class="btn btn-primary" href="/book/create-new-book"
-            >本アップロード</a
-          >
+          <a class="" href="/book/create-new-book"
+            ><img
+              src="/images/icon/upload.svg"
+              alt="upload"
+              class="upload-icon"
+          /></a>
         </li>
+        {{/if}}
         <li><a href="/about">紹介</a></li>
         <li><a href="/contact">お問い合わせ</a></li>
         {{/unless}} {{#unless user}}
@@ -57,11 +39,11 @@
             <a href="/admin/get-crud">アカウント管理</a>
             {{/if}}
             <a href="/api/profile">プロフィール</a>
-            <a href="/book/list">list</a>
+            <a href="/book/list">書籍リスト</a>
             <a href="/api/logout">ログアウト</a>
           </div>
         </li>
-        {{/if}}
+        　 {{/if}}
       </ul>
     </nav>
   </div>

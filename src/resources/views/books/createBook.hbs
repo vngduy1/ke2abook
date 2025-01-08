@@ -1,34 +1,34 @@
 <div class="create-book-container">
-  <h1>Create a New Book</h1>
+  <h1>新しい本を作成する</h1>
   <form
     action="/book/create-new-book"
     method="POST"
     enctype="multipart/form-data"
   >
     <div class="form-group">
-      <label for="title" class="crebook-label">Title:</label>
+      <label for="title" class="crebook-label">タイトル:</label>
       <input
         type="text"
         id="title"
         name="title"
-        placeholder="Enter book title"
+        placeholder="本のタイトルを入力してください"
         required
       />
     </div>
 
     <div class="form-group">
-      <label for="author" class="crebook-label">Author:</label>
+      <label for="author" class="crebook-label">著者:</label>
       <input
         type="text"
         id="author"
         name="author"
-        placeholder="Enter author name"
+        placeholder="著者名を入力してください"
         required
       />
     </div>
 
     <div class="form-group">
-      <label for="category" class="crebook-label">Category:</label>
+      <label for="category" class="crebook-label">カテゴリィ:</label>
       <select id="category" name="categoryId" required class="crebook-input">
         {{#each categories}}
         <option value="{{this.id}}">{{this.name}}</option>
@@ -37,11 +37,11 @@
     </div>
 
     <div class="form-group">
-      <label for="description" class="crebook-label">Description:</label>
+      <label for="description" class="crebook-label">ディスクライブ:</label>
       <textarea
         id="description"
         name="description"
-        placeholder="Enter book description"
+        placeholder="本の説明を入力してください"
         required
       ></textarea>
     </div>
@@ -64,13 +64,12 @@
     </div>
 
     <div class="form-group">
-      <label for="image" class="crebook-label">Cover Image:</label>
+      <label for="image" class="crebook-label">表紙画像:</label>
       <input
         type="file"
         id="image"
         name="image"
         accept="image/*"
-        class="crebook-input"
         onchange="previewImage(event)"
       />
       <!-- Vùng hiển thị hình ảnh xem trước -->
@@ -83,10 +82,10 @@
         />
       </div>
     </div>
-    {{#if messageError}}
-    <p style="color: red">{{messageError}}</p>
+    {{#if errMessage}}
+    <p style="color: red">{{errMessage}}</p>
     {{/if}}
-    <button type="submit" class="submit-button">Create</button>
+    <button type="submit" class="submit-button">アップロード</button>
   </form>
 </div>
 

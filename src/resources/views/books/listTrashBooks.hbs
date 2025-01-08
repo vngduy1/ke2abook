@@ -1,19 +1,19 @@
 <div class="list-trash-container">
-  <h1 class="list-books-title">Track Books</h1>
+  <h1 class="list-books-title">書籍のごみ箱</h1>
   {{#if errMessage}}
   <div class=""><p style="color: red;">{{errMessage}} </p></div>
   {{/if}}
   <div class="">
-    <a href="/book/list">list book</a>
+    <a class="btn btn-primary" href="/book/list">書籍のリスト</a>
   </div>
   {{#if books.length}}
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">image</th>
-        <th scope="col">title</th>
-        <th scope="col">author</th>
-        <th scope="col">Action</th>
+        <th scope="col">イメージ</th>
+        <th scope="col">タイトル</th>
+        <th scope="col">著者</th>
+        <th scope="col">行動</th>
       </tr>
     </thead>
     <tbody>
@@ -34,10 +34,10 @@
           <td class="td-author">{{this.author}}</td>
           <td class="td-button">
             <form action="/book/restore/{{this.id}}" method="POST">
-              <button type="submit" class="list-restore-button">Restore</button>
+              <button type="submit" class="list-restore-button">回復</button>
             </form>
             <form action="/book/destroy/{{this.id}}" method="POST">
-              <button type="submit" class="list-delete-button">Delete</button>
+              <button type="submit" class="list-delete-button">削除</button>
             </form>
           </td>
         </tr>
