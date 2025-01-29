@@ -149,7 +149,7 @@ const booksService = {
         }
       } else {
         return {
-          errCode: 0,
+          errCode: 1,
           data: [],
           errMessage: '現在、書籍はありません。',
         }
@@ -295,7 +295,7 @@ const booksService = {
       console.error('Error fetching trash books:', error)
       return {
         errCode: 2,
-        errMessage: error.message,
+        errMessage: error,
       }
     }
   },

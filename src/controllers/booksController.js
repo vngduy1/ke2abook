@@ -378,17 +378,17 @@ const booksController = {
       const { errCode, data, errMessage } = result
 
       if (errCode === 0) {
-        if (data.length === 0) {
-          return res.render('./books/listTrashBooks.hbs', {
-            books: [],
-            user: sessionUser,
-            message: '空いてます。',
-          })
-        }
         // 削除された書籍データがある場合は listtrashbooks.hbs ページをレンダリングします
         res.render('./books/listTrashBooks.hbs', {
           books: data,
           user: sessionUser,
+        })
+      }
+      if (errCode === 1) {
+        res.render('./books/listTrashBooks.hbs', {
+          books: data,
+          user: sessionUser,
+          message: '現在、書籍ごみ箱空いてます。',
         })
       } else {
         // 本が削除されていない場合はエラー ページを表示します
