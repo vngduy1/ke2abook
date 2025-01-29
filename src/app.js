@@ -11,6 +11,9 @@ const adminWebRoutes = require('./routes/adminRoute')
 const userRoute = require('./routes/userRoute')
 const bookRoute = require('./routes/bookRoute')
 require('dotenv').config()
+const http = require('http')
+
+const server = http.createServer(app)
 
 // method-override ミドルウェアを使用して、HTTP メソッドを上書きできるように設定します。
 // '_method' はリクエストのクエリまたはボディに含まれるパラメータ名で、
@@ -81,3 +84,5 @@ const port = process.env.PORT
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)
 })
+
+module.exports = server

@@ -64,21 +64,21 @@ const booksController = {
       )
       const { errCode, data } = books
       if (errCode === 0) {
-        if (data.length === 0) {
-          res.render('./books/listBooks.hbs', {
-            books: data,
-            user: sessionUser,
-            sortField,
-            sortOrder,
-            message: '書籍のリスト空いてます。',
-          })
-        }
         res.render('./books/listBooks.hbs', {
           books: data,
           user: sessionUser,
           sortField,
           sortOrder,
           categories,
+        })
+      }
+      if (errCode === 1) {
+        res.render('./books/listBooks.hbs', {
+          books: data,
+          user: sessionUser,
+          sortField,
+          sortOrder,
+          message: '書籍のリスト空いてます。',
         })
       } else {
         const errMessage = books.errMessage
@@ -123,19 +123,21 @@ const booksController = {
       })
 
       //書籍だけ取得
-      const books = result.data.map((row) => row.book)
 
-      if (result.errCode === -1) {
-        res.render('./books/listBooks.hbs', {
-          books: result.data,
-          user: sessionUser.id,
-          message: result.errMessage,
-        })
-      }
+      const books = Array.isArray(result.data)
+        ? result.data.map((row) => row.book)
+        : []
 
       const selectedCategoryId =
         categoryId !== 'all' ? parseInt(categoryId, 10) : 'all'
-      if (result.errCode === 0) {
+
+      if (result.errCode === -1) {
+        res.render('./books/listBooks.hbs', {
+          books: [],
+          user: sessionUser.id,
+          message: result.errMessage,
+        })
+      } else if (result.errCode === 0) {
         const totalPages = Math.ceil(result.totalBooks / limit)
         res.render('./books/listBooks.hbs', {
           books,
@@ -147,16 +149,46 @@ const booksController = {
           query: { ...req.query, categoryId: selectedCategoryId },
         })
       } else {
-        res.render('./books/errorBook.hbs', {
+        res.render('./books/errorBooks.hbs', {
           user: sessionUser,
           errMessage: result.errMessage,
         })
       }
+
+      // const books = result.data.map((row) => row.book)
+
+      // if (result.errCode === -1) {
+      //   res.render('./books/listBooks.hbs', {
+      //     books: result.data,
+      //     user: sessionUser.id,
+      //     message: result.errMessage,
+      //   })
+      // }
+
+      // const selectedCategoryId =
+      //   categoryId !== 'all' ? parseInt(categoryId, 10) : 'all'
+      // if (result.errCode === 0) {
+      //   const totalPages = Math.ceil(result.totalBooks / limit)
+      //   res.render('./books/listBooks.hbs', {
+      //     books,
+      //     user: sessionUser,
+      //     currentPage: parseInt(page, 10),
+      //     totalPages,
+      //     hasPagination: result.totalBooks > limit,
+      //     categories,
+      //     query: { ...req.query, categoryId: selectedCategoryId },
+      //   })
+      // } else {
+      //   res.render('./books/errorBook.hbs', {
+      //     user: sessionUser,
+      //     errMessage: result.errMessage,
+      //   })
+      // }
     } catch (error) {
-      console.error('書籍検索エラー:', error)
+      // console.error('書籍検索エラー:', error)
       res.render('./books/errorBooks.hbs', {
         user: sessionUser,
-        errMessage: error.message,
+        errMessage: 'Database error',
       })
     }
   },

@@ -136,7 +136,8 @@ const handleEditProfile = async (req, res) => {
 
     let message = await userService.handleEditProfile(userData, id)
     if (message.errCode === 0) {
-      return res.render('./user/profile.hbs', { user })
+      // return res.render('./user/profile.hbs', { user })
+      return res.redirect('/api/profile')
     }
   } catch (error) {
     console.log(error)

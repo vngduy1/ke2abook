@@ -48,6 +48,7 @@ const createNewUser = (data) => {
         resolve({
           errCode: 0,
           data,
+          message: 'User created successfully',
         })
       }
     } catch (error) {
@@ -146,6 +147,14 @@ const handleEditProfile = async (data, id) => {
         where: { id: id },
         raw: false,
       })
+      if (!user) {
+        resolve({
+          errCode: -2,
+          errMessage: 'ユーザが存在ません。',
+        })
+        return
+      }
+
       if (user) {
         if (data.password) {
           let hashPasswordFromBcrypt = await hashUserPassword(data.password)
@@ -169,12 +178,7 @@ const handleEditProfile = async (data, id) => {
         })
       }
     } catch (error) {
-      console.log(error)
-
-      reject({
-        errCode: 1,
-        errMessage: 'ユーザが存在ません。',
-      })
+      reject(new Error('Unexpected error'))
     }
   })
 }

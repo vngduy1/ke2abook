@@ -288,7 +288,6 @@ const booksService = {
       } else {
         return {
           errCode: 1,
-          errMessage: 'No deleted books found.',
           data: [],
         }
       }

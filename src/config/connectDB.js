@@ -3,7 +3,7 @@ require('dotenv').config()
 const { Sequelize } = require('sequelize')
 const { DB_NAME, DB_USER, DB_PASS, DB_HOST, DB_DIALECT, DB_PORT } = process.env
 
-//DEPLOY用
+//deploy用
 const {
   MYSQL_ADDON_HOST,
   MYSQL_ADDON_DB,
