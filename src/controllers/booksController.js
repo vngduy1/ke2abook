@@ -64,21 +64,21 @@ const booksController = {
       )
       const { errCode, data } = books
       if (errCode === 0) {
-        if (data.length === 0) {
-          res.render('./books/listBooks.hbs', {
-            books: data,
-            user: sessionUser,
-            sortField,
-            sortOrder,
-            message: '書籍のリスト空いてます。',
-          })
-        }
         res.render('./books/listBooks.hbs', {
           books: data,
           user: sessionUser,
           sortField,
           sortOrder,
           categories,
+        })
+      }
+      if (errCode === 1) {
+        res.render('./books/listBooks.hbs', {
+          books: data,
+          user: sessionUser,
+          sortField,
+          sortOrder,
+          message: '書籍のリスト空いてます。',
         })
       } else {
         const errMessage = books.errMessage
